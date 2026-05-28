@@ -1,0 +1,48 @@
+# Backup / temporary files
+*.bak
+*.tmp
+*.bck
+*.old
+*~
+*.swp
+*.swo
+*.lck
+
+# KiCad autosave / backup
+*auto_saved_files#
+**/fp-info-cache
+*-backups/
+
+*.kicad_pcb-bak
+*.kicad_sch-bak
+
+# KiCad autosave
+**/_autosave-*
+
+# Generated fabrication files
+*.gbr
+*.drl
+*.gbl
+*.gbo
+*.gbs
+*.gko
+*.gml
+*.gpi
+*.gtl
+*.gto
+*.gtp
+*.gts
+
+# Generated PDFs
+*.kicad_sch-bak.pdf
+*.kicad_pcb-bak.pdf
+
+# 3D cache
+*.3dshapes-cache
+
+# KiCad local/user settings
+*.kicad_prl
+*.kicad_pro-bak
+
+# macOS
+.DS_Store
