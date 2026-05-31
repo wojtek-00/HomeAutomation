@@ -489,7 +489,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "extension_module_template.kicad_pro",
+    "filename": "extension_module_two_rows_template.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -656,18 +656,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "extension_module_template.kicad_sch",
-        "name": "extension_module_template",
+        "filename": "extension_module_two_rows_template.kicad_sch",
+        "name": "extension_module_two_rows_template",
         "uuid": "14085887-8f36-46fe-a4da-c907d70eabd5"
       }
     ],
-    "used_designators": "J1,J3,#PWR1-8,SW1",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
       "14085887-8f36-46fe-a4da-c907d70eabd5",
-      "extension_module_template"
+      "extension_module_two_rows_template"
     ]
   ],
   "text_variables": {},
