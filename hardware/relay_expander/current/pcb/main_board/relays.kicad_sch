@@ -2103,324 +2103,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Relay:SANYOU_SRD_Form_A"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "K"
-				(at 8.89 3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "SANYOU_SRD_Form_A"
-				(at 8.89 1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A"
-				(at 8.89 -1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Datasheet" "http://www.sanyourelay.ca/public/products/pdf/SRD.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Sanyo SRD relay, Single Pole Miniature Power Relay, Closing Contact"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "Single Pole Relay SPST"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Relay*SPST*SANYOU*SRD*Series*Form*A*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "SANYOU_SRD_Form_A_0_0"
-				(polyline
-					(pts
-						(xy 5.08 5.08) (xy 5.08 2.54) (xy 4.445 3.175) (xy 5.08 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SANYOU_SRD_Form_A_0_1"
-				(rectangle
-					(start -10.16 5.08)
-					(end 7.62 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -8.255 1.905)
-					(end -1.905 -1.905)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 -1.905) (xy -2.54 1.905)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -5.08 5.08) (xy -5.08 1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -5.08 -5.08) (xy -5.08 -1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.905 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.635 0) (xy 0 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.905 0) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.175 0) (xy 3.81 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 -2.54) (xy 3.175 3.81)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 -2.54) (xy 5.08 -5.08)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SANYOU_SRD_Form_A_1_1"
-				(pin passive line
-					(at 5.08 -7.62 90)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -7.62 90)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 7.62 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 7.62 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Transistor_BJT:BC548"
 			(pin_names
 				(offset 0)
@@ -2654,6 +2336,324 @@
 						)
 					)
 					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "homeautomation_core:Relay_HF46F_Form_A"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "K"
+				(at 8.89 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "Relay_HF46F_Form_A"
+				(at 8.89 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Relay_THT:Relay_SPST_SANYOU_SRD_Series_Form_A"
+				(at 8.89 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Datasheet" "http://www.sanyourelay.ca/public/products/pdf/SRD.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Sanyo SRD relay, Single Pole Miniature Power Relay, Closing Contact"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Single Pole Relay SPST"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Relay*SPST*SANYOU*SRD*Series*Form*A*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Relay_HF46F_Form_A_0_0"
+				(polyline
+					(pts
+						(xy 5.08 5.08) (xy 5.08 2.54) (xy 4.445 3.175) (xy 5.08 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Relay_HF46F_Form_A_0_1"
+				(rectangle
+					(start -10.16 5.08)
+					(end 7.62 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -8.255 1.905)
+					(end -1.905 -1.905)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -7.62 -1.905) (xy -2.54 1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy -5.08 1.905)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 -5.08) (xy -5.08 -1.905)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.635 0) (xy 0 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 0) (xy 2.54 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.175 0) (xy 3.81 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 -2.54) (xy 3.175 3.81)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 -2.54) (xy 5.08 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Relay_HF46F_Form_A_1_1"
+				(pin passive line
+					(at -5.08 -7.62 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 -7.62 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6737,7 +6737,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 140.97 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -7119,7 +7119,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 138.176 141.478 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7130,7 +7130,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 146.05 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -7231,7 +7231,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 50.8 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -7513,7 +7513,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 69.85 83.82 0)
 		(unit 1)
 		(body_style 1)
@@ -7525,7 +7525,7 @@
 		(fields_autoplaced yes)
 		(uuid "195d0e90-771e-4ec4-90e3-27583e387ba6")
 		(property "Reference" "K2"
-			(at 78.74 82.5499 0)
+			(at 78.74 83.8199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7535,7 +7535,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 78.74 85.0899 0)
 			(hide yes)
 			(show_name no)
@@ -7547,7 +7547,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 78.74 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -7584,7 +7584,7 @@
 		(pin "2"
 			(uuid "783abbad-d68e-4d10-b19e-3288ff209059")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "3bea54dc-1c43-4e26-b31e-afe169869de8")
 		)
 		(pin "3"
@@ -7634,7 +7634,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 115.57 157.48 0)
 			(hide yes)
 			(show_name no)
@@ -7717,7 +7717,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 186.69 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -7953,7 +7953,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 189.23 85.0899 0)
 			(hide yes)
 			(show_name no)
@@ -7965,7 +7965,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 186.69 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -8125,7 +8125,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 50.8 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -8205,7 +8205,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 25.4 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -9208,7 +9208,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 115.57 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -9466,7 +9466,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 137.668 86.614 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9477,7 +9477,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 146.05 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -9661,7 +9661,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 50.8 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -9731,7 +9731,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 48.006 31.75 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9742,7 +9742,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 55.88 29.21 0)
 			(hide yes)
 			(show_name no)
@@ -9844,7 +9844,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 25.4 157.48 0)
 			(hide yes)
 			(show_name no)
@@ -9927,7 +9927,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 96.52 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -10105,7 +10105,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 276.86 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -10257,7 +10257,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 228.346 86.614 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10268,7 +10268,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 236.22 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -10339,7 +10339,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 250.19 83.82 0)
 		(unit 1)
 		(body_style 1)
@@ -10351,7 +10351,7 @@
 		(fields_autoplaced yes)
 		(uuid "60ad1627-af2b-4af0-afdb-e27fab1adc93")
 		(property "Reference" "K8"
-			(at 259.08 82.5499 0)
+			(at 259.08 83.8199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10361,7 +10361,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 259.08 85.0899 0)
 			(hide yes)
 			(show_name no)
@@ -10373,7 +10373,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 259.08 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -10410,7 +10410,7 @@
 		(pin "2"
 			(uuid "b584bc18-f5c4-4000-a8c9-dc09b8434d18")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "b22b17a4-cea5-4d90-9081-d975295bb511")
 		)
 		(pin "3"
@@ -10459,7 +10459,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 231.14 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -10529,7 +10529,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 47.498 141.224 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10540,7 +10540,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 55.88 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -10641,7 +10641,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 140.97 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -10961,7 +10961,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 205.74 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -11031,7 +11031,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 228.092 32.004 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11042,7 +11042,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 236.22 29.21 0)
 			(hide yes)
 			(show_name no)
@@ -11462,7 +11462,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 140.97 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -11542,7 +11542,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 205.74 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -11778,7 +11778,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 50.8 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -11940,7 +11940,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 137.922 32.004 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11951,7 +11951,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 146.05 29.21 0)
 			(hide yes)
 			(show_name no)
@@ -12145,7 +12145,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 250.19 29.21 0)
 		(unit 1)
 		(body_style 1)
@@ -12157,7 +12157,7 @@
 		(fields_autoplaced yes)
 		(uuid "7f62de35-5087-4143-92df-041d9689fbd8")
 		(property "Reference" "K7"
-			(at 259.08 27.9399 0)
+			(at 259.08 29.2099 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12167,7 +12167,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 259.08 30.4799 0)
 			(hide yes)
 			(show_name no)
@@ -12179,7 +12179,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 259.08 30.48 0)
 			(hide yes)
 			(show_name no)
@@ -12216,7 +12216,7 @@
 		(pin "2"
 			(uuid "daea6f14-3fdb-4a73-81e0-395124317dff")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "42de4505-0072-4091-b0eb-4ef11fe9591b")
 		)
 		(pin "3"
@@ -12344,7 +12344,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 231.14 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -12549,7 +12549,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 160.02 83.82 0)
 		(unit 1)
 		(body_style 1)
@@ -12561,7 +12561,7 @@
 		(fields_autoplaced yes)
 		(uuid "87532f38-e780-404c-8b2a-7f891e4db259")
 		(property "Reference" "K5"
-			(at 168.91 82.5499 0)
+			(at 168.91 83.8199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12571,7 +12571,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 168.91 85.0899 0)
 			(hide yes)
 			(show_name no)
@@ -12583,7 +12583,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 168.91 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -12620,7 +12620,7 @@
 		(pin "2"
 			(uuid "647a2716-57f3-4848-9466-4206e42f772b")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "412d7de8-28f0-4631-be6b-bf926f35f6f7")
 		)
 		(pin "3"
@@ -12716,7 +12716,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 160.02 138.43 0)
 		(unit 1)
 		(body_style 1)
@@ -12728,7 +12728,7 @@
 		(fields_autoplaced yes)
 		(uuid "891f6174-68c3-4405-8665-16261f9d3ce1")
 		(property "Reference" "K6"
-			(at 168.91 137.1599 0)
+			(at 168.91 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12738,7 +12738,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 168.91 139.6999 0)
 			(hide yes)
 			(show_name no)
@@ -12750,7 +12750,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 168.91 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -12787,7 +12787,7 @@
 		(pin "2"
 			(uuid "171d755b-e909-4b16-853a-e0b599e6a6fe")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "e16583a7-14c4-4b0a-84da-0ee7e6f5400b")
 		)
 		(pin "3"
@@ -12806,7 +12806,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 69.85 138.43 0)
 		(unit 1)
 		(body_style 1)
@@ -12818,7 +12818,7 @@
 		(fields_autoplaced yes)
 		(uuid "89ffaeff-62e6-42f5-88f6-fff944922547")
 		(property "Reference" "K3"
-			(at 78.74 137.1599 0)
+			(at 78.74 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12828,7 +12828,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 78.74 139.6999 0)
 			(hide yes)
 			(show_name no)
@@ -12840,7 +12840,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 78.74 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -12877,7 +12877,7 @@
 		(pin "2"
 			(uuid "fdf0d906-bb15-4934-9778-bf599f3b37aa")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "37a57fe7-5e7e-483d-b59f-ead1397455e8")
 		)
 		(pin "3"
@@ -13018,7 +13018,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 231.14 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -13375,7 +13375,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 140.97 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -13615,7 +13615,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 96.52 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -13701,7 +13701,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "TerminalBlock:TerminalBlock_Xinya_XY308-2.54-3P_1x03_P2.54mm_Horizontal"
 			(at 96.52 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -13959,7 +13959,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 115.57 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -14253,7 +14253,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 231.14 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -14538,7 +14538,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 50.8 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -14697,7 +14697,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 25.4 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -14746,7 +14746,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 160.02 29.21 0)
 		(unit 1)
 		(body_style 1)
@@ -14758,7 +14758,7 @@
 		(fields_autoplaced yes)
 		(uuid "c8b13434-1e47-4e6a-a73d-1ef0e0d4862e")
 		(property "Reference" "K4"
-			(at 168.91 27.9399 0)
+			(at 168.91 29.2099 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14768,7 +14768,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 168.91 30.4799 0)
 			(hide yes)
 			(show_name no)
@@ -14780,7 +14780,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 168.91 30.48 0)
 			(hide yes)
 			(show_name no)
@@ -14817,7 +14817,7 @@
 		(pin "2"
 			(uuid "6991ddc4-9dd3-406c-ba43-723e091a618a")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "6da04755-236a-4019-80ff-0b8cd962ba49")
 		)
 		(pin "3"
@@ -14857,7 +14857,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N4007"
+		(property "Value" "1N4148"
 			(at 48.006 86.868 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14868,7 +14868,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 55.88 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -15861,7 +15861,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 276.86 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -15943,7 +15943,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 50.8 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -16194,7 +16194,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Relay:SANYOU_SRD_Form_A")
+		(lib_id "homeautomation_core:Relay_HF46F_Form_A")
 		(at 69.85 29.21 0)
 		(unit 1)
 		(body_style 1)
@@ -16206,7 +16206,7 @@
 		(fields_autoplaced yes)
 		(uuid "e3bc4751-7321-47f9-a937-4bee50887026")
 		(property "Reference" "K1"
-			(at 78.74 27.9399 0)
+			(at 78.74 29.2099 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16216,7 +16216,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SANYOU_SRD_Form_C"
+		(property "Value" "HF46F-12-HS1"
 			(at 78.74 30.4799 0)
 			(hide yes)
 			(show_name no)
@@ -16228,7 +16228,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "templates_lib_footprints:Songle_SMI-SL-A"
+		(property "Footprint" "homeautomation_core:relay_HF46F"
 			(at 78.74 30.48 0)
 			(hide yes)
 			(show_name no)
@@ -16265,7 +16265,7 @@
 		(pin "2"
 			(uuid "08ad39ee-6467-4022-b526-c4ec823d3cba")
 		)
-		(pin "5"
+		(pin "4"
 			(uuid "00921ac1-4122-4ca7-bee8-0f3b9673c295")
 		)
 		(pin "3"
@@ -16318,7 +16318,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 186.69 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -16853,7 +16853,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 140.97 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -17103,7 +17103,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 140.97 60.96 0)
 			(hide yes)
 			(show_name no)

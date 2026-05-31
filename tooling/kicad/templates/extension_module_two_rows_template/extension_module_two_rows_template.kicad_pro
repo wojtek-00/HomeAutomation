@@ -489,7 +489,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "main_board.kicad_pro",
+    "filename": "extension_module_two_rows_template.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -526,7 +526,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "../GEBER",
+      "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
@@ -603,54 +603,12 @@
           "label": "Datasheet",
           "name": "Datasheet",
           "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Sim.Library",
-          "name": "Sim.Library",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Sim.Name",
-          "name": "Sim.Name",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Sim.Params",
-          "name": "Sim.Params",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Sim.Pins",
-          "name": "Sim.Pins",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Sim.Device",
-          "name": "Sim.Device",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Description",
-          "name": "Description",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "#",
-          "name": "${ITEM_NUMBER}",
-          "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
       "include_excluded_from_bom": true,
-      "name": "",
+      "name": "Default Editing",
       "sort_asc": true,
       "sort_field": "Reference"
     },
@@ -698,26 +656,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "main_board.kicad_sch",
-        "name": "main_board",
+        "filename": "extension_module_two_rows_template.kicad_sch",
+        "name": "extension_module_two_rows_template",
         "uuid": "14085887-8f36-46fe-a4da-c907d70eabd5"
       }
     ],
-    "used_designators": "J1,J3,#PWR2-5,#PWR55-58",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
       "14085887-8f36-46fe-a4da-c907d70eabd5",
-      "main_board"
-    ],
-    [
-      "6a74995a-a263-4b43-94e4-c06372d97251",
-      "Relays"
-    ],
-    [
-      "14897a43-3916-444c-96c9-929b1fe3633b",
-      "Digital_Inputs"
+      "extension_module_two_rows_template"
     ]
   ],
   "text_variables": {},

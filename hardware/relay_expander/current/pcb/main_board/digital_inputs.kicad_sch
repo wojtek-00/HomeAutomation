@@ -3914,7 +3914,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 90.17 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -4847,7 +4847,8 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x03")
-		(at 87.63 43.18 180)
+		(at 87.63 43.18 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4855,10 +4856,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "aaec8c31-1af3-4e2d-9d7f-88238c9e6b06")
 		(property "Reference" "J12"
-			(at 87.63 36.83 0)
+			(at 87.63 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4868,7 +4868,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 85.09 40.6401 0)
+			(at 85.09 45.7199 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4879,7 +4879,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 87.63 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -5013,7 +5013,8 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x03")
-		(at 88.9 102.87 180)
+		(at 88.9 102.87 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5021,10 +5022,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "af8201d7-2785-447b-af7e-0acec35a85a3")
 		(property "Reference" "J13"
-			(at 88.9 96.52 0)
+			(at 88.9 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5034,7 +5034,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 86.36 100.3301 0)
+			(at 86.36 105.4099 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5045,7 +5045,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 88.9 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -5743,7 +5743,8 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x03")
-		(at 90.17 157.48 180)
+		(at 90.17 157.48 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5751,10 +5752,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "e7980a6f-af4e-4a09-b843-d21e7655968d")
 		(property "Reference" "J14"
-			(at 90.17 151.13 0)
+			(at 90.17 163.83 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5764,7 +5764,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 87.63 154.9401 0)
+			(at 87.63 160.0199 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5775,7 +5775,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project_Parts_Footprints_Lib:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
+		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
 			(at 90.17 157.48 0)
 			(hide yes)
 			(show_name no)
