@@ -1,0 +1,5 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "libraries") (type "KiCad") (uri "/Users/wojciechzarzycki/Documents/MySpace/Dev/Projects/HomeAutomation/hardware/relay_expander/current/pcb/libraries.pretty") (options "") (descr ""))
+	(lib (name "homeautomation_core") (type "KiCad") (uri "/Users/wojciechzarzycki/Documents/MySpace/Dev/Projects/HomeAutomation/tooling/kicad/libraries/footprints/homeautomation_core.pretty") (options "") (descr ""))
+)
