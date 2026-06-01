@@ -5872,7 +5872,7 @@
 			)
 		)
 	)
-	(footprint "Connector_PinSocket_1.27mm:PinSocket_2x10_P1.27mm_Vertical"
+	(footprint "homeautomation_core:PinSocket_2x10_P1.27mm_Vertical_Bottom"
 		(locked yes)
 		(layer "B.Cu")
 		(uuid "f22ae164-766d-4b91-990a-eb7c8b482932")
@@ -5880,7 +5880,7 @@
 		(descr "Through hole straight socket strip, 2x10, 1.27mm pitch, double rows (from Kicad 4.0.7), script generated")
 		(tags "Through hole socket strip THT 2x10 1.27mm double row")
 		(property "Reference" "J1"
-			(at 0 7.8575 0)
+			(at -0.34 7.65 0)
 			(layer "B.SilkS")
 			(uuid "0c0c978b-a7ca-4f28-bd09-93fd3c895bc5")
 			(effects
@@ -5892,7 +5892,7 @@
 			)
 		)
 		(property "Value" "Conn_01x20_Socket"
-			(at 0 -7.8425 0)
+			(at 1.01 -8.66 0)
 			(layer "B.Fab")
 			(uuid "8ef205af-aaba-4fa2-86c8-4cf0f8a01f0c")
 			(effects
@@ -5904,7 +5904,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0.635 5.7225 0)
+			(at 1.645 1.8925 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "94f0d5a0-d75c-4e3c-b1fa-ac45da2b63fa")
@@ -5915,8 +5915,8 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x20, script generated"
-			(at 0.635 5.7225 0)
+		(property "Description" ""
+			(at 1.645 1.8925 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "56bae00d-114a-4ce0-a2b3-66498bccab45")
@@ -5928,7 +5928,7 @@
 			)
 		)
 		(property "KiLib_Generator" "connector/pin_header_socket"
-			(at 0.635 5.7225 0)
+			(at 1.645 1.8925 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "f0a6ccb4-203d-4d50-8825-d6f2e6d7a9c8")
@@ -5997,6 +5997,16 @@
 			(uuid "6aff99a3-1b17-4bac-b4ad-b35bcd7b05d5")
 		)
 		(fp_line
+			(start 0 -6.4025)
+			(end 0 6.4025)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "87c8b827-5ff6-4cac-a269-76c6f3b5ff2a")
+		)
+		(fp_line
 			(start -0.32747 6.4175)
 			(end -0.125 6.4175)
 			(stroke
@@ -6037,6 +6047,16 @@
 			(uuid "291410c9-d27f-445e-a1fb-8df37bfddd7e")
 		)
 		(fp_line
+			(start -1.585 0.0075)
+			(end 1.585 0.0075)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "4553c69d-7082-4ed0-a7d7-e18d34f9afc5")
+		)
+		(fp_line
 			(start -1.585 -6.4025)
 			(end -0.94253 -6.4025)
 			(stroke
@@ -6045,26 +6065,6 @@
 			)
 			(layer "B.SilkS")
 			(uuid "cca7120f-7c54-4d1f-b2a1-2f3969808876")
-		)
-		(fp_line
-			(start 0 -6.4025)
-			(end 0 6.4025)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "Dwgs.User")
-			(uuid "87c8b827-5ff6-4cac-a269-76c6f3b5ff2a")
-		)
-		(fp_line
-			(start -1.585 0.0075)
-			(end 1.585 0.0075)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(layer "Dwgs.User")
-			(uuid "4553c69d-7082-4ed0-a7d7-e18d34f9afc5")
 		)
 		(fp_line
 			(start 2.025 6.8625)
@@ -6391,13 +6391,13 @@
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Connector_PinSocket_1.27mm.3dshapes/PinSocket_2x10_P1.27mm_Vertical.step"
 			(offset
-				(xyz 0.635 5.7225 0)
+				(xyz 0.645 5.85 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
