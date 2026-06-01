@@ -1876,16 +1876,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 129.54) (xy 134.62 110.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1fb74b72-ff85-4ad9-91cc-0542b691c63e")
-	)
-	(wire
-		(pts
 			(xy 119.38 67.31) (xy 119.38 92.71)
 		)
 		(stroke
@@ -1946,6 +1936,16 @@
 	)
 	(wire
 		(pts
+			(xy 134.62 137.16) (xy 134.6715 137.1005)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4702211a-5fa6-404b-a311-cb517bdc3276")
+	)
+	(wire
+		(pts
 			(xy 147.32 129.54) (xy 147.32 113.03)
 		)
 		(stroke
@@ -1973,6 +1973,16 @@
 			(type default)
 		)
 		(uuid "4d3459b2-1b4c-49d0-b302-a22910e4681a")
+	)
+	(wire
+		(pts
+			(xy 134.62 110.49) (xy 205.74 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5511ffa9-4694-453f-b339-076de46d343a")
 	)
 	(wire
 		(pts
@@ -2023,16 +2033,6 @@
 			(type default)
 		)
 		(uuid "706f9eca-c7be-4be9-b9d6-1f74d5b243e9")
-	)
-	(wire
-		(pts
-			(xy 134.62 110.49) (xy 205.74 110.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7b65a166-3a57-4d3e-ac09-f1cec15ded62")
 	)
 	(wire
 		(pts
@@ -2183,6 +2183,16 @@
 			(type default)
 		)
 		(uuid "dcc930b5-b8be-4940-9ed6-62170485b920")
+	)
+	(wire
+		(pts
+			(xy 134.62 129.54) (xy 134.62 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6928d41-af71-40b7-9898-26a136049e3d")
 	)
 	(wire
 		(pts
@@ -4345,7 +4355,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 134.6715 133.2905 270)
+		(at 134.62 133.35 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4355,7 +4365,7 @@
 		(dnp no)
 		(uuid "87fe1bed-34a5-4537-bd41-9a14a68fece3")
 		(property "Reference" "D13"
-			(at 139.4975 132.7825 90)
+			(at 139.446 132.842 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4366,7 +4376,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 139.7515 130.2425 90)
+			(at 139.7 130.302 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4377,7 +4387,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
-			(at 134.6715 133.2905 0)
+			(at 134.62 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4388,7 +4398,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 134.6715 133.2905 0)
+			(at 134.62 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4399,7 +4409,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 134.6715 133.2905 0)
+			(at 134.62 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4410,7 +4420,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 134.6715 133.2905 0)
+			(at 134.62 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
