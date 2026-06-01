@@ -641,7 +641,7 @@
 		(locked yes)
 		(layer "F.Cu")
 		(uuid "392bedbb-b1ba-44de-b585-153e6ba5c030")
-		(at 207 80)
+		(at 207 83.5)
 		(descr "Through hole angled socket strip, 1x07, 2.54mm pitch, 8.51mm socket length, single row (from Kicad 4.0.7), script generated")
 		(tags "Through hole angled socket strip THT 1x07 2.54mm single row")
 		(property "Reference" "J2"
@@ -2052,7 +2052,7 @@
 		(locked yes)
 		(layer "F.Cu")
 		(uuid "f2120b36-79b2-435f-a097-a2c18fb6818b")
-		(at 88 80)
+		(at 88 83.5)
 		(descr "Through hole angled pin header, 1x07, 2.54mm pitch, 6mm pin length, single row")
 		(tags "Through hole angled pin header THT 1x07 2.54mm single row")
 		(property "Reference" "J1"
