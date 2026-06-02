@@ -7164,7 +7164,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 189.23 30.4799 0)
 			(hide yes)
 			(show_name no)
@@ -9295,7 +9295,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 99.06 139.6999 0)
 			(hide yes)
 			(show_name no)
@@ -9381,7 +9381,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 279.4 30.4799 0)
 			(hide yes)
 			(show_name no)
@@ -12391,7 +12391,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 99.06 85.0899 0)
 			(hide yes)
 			(show_name no)
@@ -12477,7 +12477,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 99.06 30.4799 0)
 			(hide yes)
 			(show_name no)
@@ -14190,7 +14190,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 279.4 85.0899 0)
 			(hide yes)
 			(show_name no)
@@ -14647,7 +14647,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x03"
 			(at 189.23 139.6999 0)
 			(hide yes)
 			(show_name no)

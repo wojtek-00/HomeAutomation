@@ -4417,6 +4417,16 @@
 	)
 	(wire
 		(pts
+			(xy 128.27 128.27) (xy 137.16 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e502c55-4ef3-443e-9659-a7bee1a44c33")
+	)
+	(wire
+		(pts
 			(xy 63.5 184.15) (xy 59.69 184.15)
 		)
 		(stroke
@@ -5207,6 +5217,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 128.27) (xy 123.19 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc09f664-9c7e-40c5-bfee-2ff2246ed1a1")
+	)
+	(wire
+		(pts
 			(xy 124.46 54.61) (xy 124.46 49.53)
 		)
 		(stroke
@@ -5994,6 +6014,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5V")
+		(at 116.84 128.27 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "08677a28-2f47-4e85-91fb-ee24deab393b")
+		(property "Reference" "#PWR010"
+			(at 120.65 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+12V_BUS"
+			(at 118.364 125.984 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 116.84 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 116.84 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "62cb9894-cbbb-4e85-bdbd-e8c4bced051b")
+		)
+		(instances
+			(project "main_board"
+				(path "/14085887-8f36-46fe-a4da-c907d70eabd5"
+					(reference "#PWR010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 119.38 166.37 0)
 		(unit 1)
@@ -6096,8 +6194,8 @@
 				)
 			)
 		)
-		(property "Value" "+12V"
-			(at 56.134 184.15 90)
+		(property "Value" "+12V_BUS"
+			(at 61.214 186.182 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6384,6 +6482,84 @@
 			(project "main_board"
 				(path "/14085887-8f36-46fe-a4da-c907d70eabd5"
 					(reference "#PWR057")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 137.16 128.27 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2c05fd5b-9984-4ed3-98ad-f5ffe1a13317")
+		(property "Reference" "#PWR08"
+			(at 133.35 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+12V"
+			(at 140.716 128.27 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 137.16 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 137.16 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 137.16 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d962f9fc-bd29-4b4f-8c9b-8724a88d1299")
+		)
+		(instances
+			(project "main_board"
+				(path "/14085887-8f36-46fe-a4da-c907d70eabd5"
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -6705,8 +6881,8 @@
 				)
 			)
 		)
-		(property "Value" "+12V"
-			(at 40.386 184.15 90)
+		(property "Value" "+12V_BUS"
+			(at 35.306 186.436 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6994,6 +7170,86 @@
 			(project "main_board"
 				(path "/14085887-8f36-46fe-a4da-c907d70eabd5"
 					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:Fuse_Small")
+		(at 125.73 128.27 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5cbab609-2da8-4494-8cb2-cb7c0f81ba9f")
+		(property "Reference" "F2"
+			(at 125.73 125.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0.5A"
+			(at 125.73 125.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Fuse:Fuse_1206_3216Metric"
+			(at 125.73 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 125.73 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Fuse, small symbol"
+			(at 125.73 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "672cbc77-4f48-48af-8488-dbb940339f1e")
+		)
+		(pin "2"
+			(uuid "8adc9ea5-2771-4792-b9ef-543033497973")
+		)
+		(instances
+			(project "main_board"
+				(path "/14085887-8f36-46fe-a4da-c907d70eabd5"
+					(reference "F2")
 					(unit 1)
 				)
 			)
@@ -8315,7 +8571,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Screw_Terminal_01x04"
 			(at 33.02 130.8101 0)
 			(hide yes)
 			(show_name no)

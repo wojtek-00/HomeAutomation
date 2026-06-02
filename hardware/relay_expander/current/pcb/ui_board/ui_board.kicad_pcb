@@ -83,9 +83,9 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "gerber_ui_board/")
 		)
 	)
 	(footprint "LED_SMD:LED_1206_3216Metric_Pad1.42x1.75mm_HandSolder"
@@ -7250,6 +7250,18 @@
 		)
 		(layer "Edge.Cuts")
 		(uuid "63ad04cb-251e-48e0-ac37-32895d4558e3")
+	)
+	(gr_text "relay_module\nui_board_v1.0.0"
+		(at 124.75 100 0)
+		(layer "B.SilkS")
+		(uuid "f0b83671-0a93-421b-ab2e-3e3570471ca1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+			(justify left bottom mirror)
+		)
 	)
 	(segment
 		(start 177.595241 90.475)
