@@ -4368,7 +4368,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
+		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
 			(at 90.17 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -5254,7 +5254,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
+		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
 			(at 87.63 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -5420,7 +5420,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
+		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
 			(at 88.9 102.87 0)
 			(hide yes)
 			(show_name no)
@@ -6150,7 +6150,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "footprints:Terminal_block_1x3_2,54"
+		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-3-2.54_1x03_P2.54mm_Horizontal"
 			(at 90.17 157.48 0)
 			(hide yes)
 			(show_name no)
