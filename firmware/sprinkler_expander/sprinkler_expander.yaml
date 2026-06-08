@@ -15,7 +15,72 @@ mcp23017:
   - id: ${id}_mcp
     address: ${mcp_address}
 
-
+binary_sensor:
+  - platform: gpio
+    name: ${id}_in0
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 8
+      mode: INPUT
+      inverted: True
+    id: ${id}_in0
+  - platform: gpio
+    name: ${id}_in1
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 9
+      mode: INPUT
+      inverted: True
+    id: ${id}_in1
+  - platform: gpio
+    name: ${id}_in2
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 10
+      mode: INPUT
+      inverted: True
+    id: ${id}_in2
+  - platform: gpio
+    name: ${id}_in3
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 11
+      mode: INPUT
+      inverted: True
+    id: ${id}_in3
+  - platform: gpio
+    name: ${id}_in4
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 12
+      mode: INPUT
+      inverted: True
+    id: ${id}_in4
+  - platform: gpio
+    name: ${id}_in5
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 13
+      mode: INPUT
+      inverted: True
+    id: ${id}_in5
+  - platform: gpio
+    name: ${id}_in6
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 14
+      mode: INPUT
+      inverted: True
+    id: ${id}_in6
+  - platform: gpio
+    name: ${id}_in7
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 15
+      mode: INPUT
+      inverted: True
+    id: ${id}_in7
+    
 switch:
   - platform: gpio
     id: ${id}_valve_1
@@ -34,6 +99,66 @@ switch:
     pin:
       mcp23xxx: ${id}_mcp
       number: 1
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    id: ${id}_valve_3
+    name: "${id} valve 3"
+    internal: true
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 2
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    id: ${id}_valve_4
+    name: "${id} valve 4"
+    internal: true
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 3
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    id: ${id}_valve_5
+    name: "${id} valve 5"
+    internal: true
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 4
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    id: ${id}_valve_6
+    name: "${id} valve 6"
+    internal: true
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 5
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    id: ${id}_valve_7
+    name: "${id} valve 7"
+    internal: true
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 6
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    id: ${id}_valve_8
+    name: "${id} valve 8"
+    internal: true
+    pin:
+      mcp23xxx: ${id}_mcp
+      number: 7
       mode: OUTPUT
       inverted: True
 
@@ -62,10 +187,52 @@ sprinkler:
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_2
 
+      - valve_switch: ${id}_zone_3
+        run_duration_number:
+          name: "${id} zone 3 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_3
+
+      - valve_switch: ${id}_zone_4
+        run_duration_number:
+          name: "${id} zone 4 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_4
+
+      - valve_switch: ${id}_zone_5
+        run_duration_number:
+          name: "${id} zone 5 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_5
+
+      - valve_switch: ${id}_zone_6
+        run_duration_number:
+          name: "${id} zone 6 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_6
+
+      - valve_switch: ${id}_zone_7
+        run_duration_number:
+          name: "${id} zone 7 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_7
+
+      - valve_switch: ${id}_zone_8
+        run_duration_number:
+          name: "${id} zone 8 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_8
+
 
 text_sensor:
   - platform: template
-    name: "${id} remaining zone time"
+    name: "${id} remaining current zone time"
     update_interval: 1s
     lambda: |-
       auto t = id(${id}_sprinkler).time_remaining_active_valve();
