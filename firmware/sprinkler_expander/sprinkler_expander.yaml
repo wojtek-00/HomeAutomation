@@ -94,6 +94,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_1
     name: "${id} valve 1"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -104,6 +105,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_2
     name: "${id} valve 2"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -114,6 +116,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_3
     name: "${id} valve 3"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -124,6 +127,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_4
     name: "${id} valve 4"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -134,6 +138,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_5
     name: "${id} valve 5"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -144,6 +149,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_6
     name: "${id} valve 6"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -154,6 +160,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_7
     name: "${id} valve 7"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
@@ -164,6 +171,7 @@ switch:
   - platform: gpio
     id: ${id}_valve_8
     name: "${id} valve 8"
+    device_id: ${device_id}
     internal: true
     pin:
       mcp23xxx: ${id}_mcp
