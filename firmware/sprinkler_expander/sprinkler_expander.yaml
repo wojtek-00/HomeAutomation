@@ -9,7 +9,7 @@
 substitutions:
   id: sprinkler
   mcp_address: 0x20
-  device_id: sprinklers_1
+  device_id: extender
 
 
 mcp23017:
