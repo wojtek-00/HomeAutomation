@@ -22,7 +22,7 @@ switch:
     name: "${id} valve 1"
     internal: true
     pin:
-      mcp23017: ${id}_mcp
+      mcp23xxx: ${id}_mcp
       number: 0
       mode: OUTPUT
       inverted: True
@@ -32,7 +32,7 @@ switch:
     name: "${id} valve 2"
     internal: true
     pin:
-      mcp23017: ${id}_mcp
+      mcp23xxx: ${id}_mcp
       number: 1
       mode: OUTPUT
       inverted: True
