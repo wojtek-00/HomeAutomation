@@ -165,66 +165,66 @@ switch:
 
 sprinkler:
   - id: ${id}_sprinkler
-    main_switch: "${id} start"
-    auto_advance_switch: "${id} auto"
-    reverse_switch: "${id} reverse"
-    multiplier_number: "${id} multiplier"
-    repeat_number: "${id} repeats"
+    main_switch: "${id}_start"
+    auto_advance_switch: "${id}_auto"
+    reverse_switch: "${id}_reverse"
+    multiplier_number: "${id}_multiplier"
+    repeat_number: "${id}_repeats"
     valve_overlap: 5s
 
     valves:
       - valve_switch: ${id}_zone_1
         run_duration_number:
-          name: "${id} zone 1 time"
+          name: "${id}_zone_1_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_1
 
       - valve_switch: ${id}_zone_2
         run_duration_number:
-          name: "${id} zone 2 time"
+          name: "${id}_zone_2_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_2
 
       - valve_switch: ${id}_zone_3
         run_duration_number:
-          name: "${id} zone 3 time"
+          name: "${id}_zone_3_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_3
 
       - valve_switch: ${id}_zone_4
         run_duration_number:
-          name: "${id} zone 4 time"
+          name: "${id}_zone_4_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_4
 
       - valve_switch: ${id}_zone_5
         run_duration_number:
-          name: "${id} zone 5 time"
+          name: "${id}_zone_5_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_5
 
       - valve_switch: ${id}_zone_6
         run_duration_number:
-          name: "${id} zone 6 time"
+          name: "${id}_zone_6_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_6
 
       - valve_switch: ${id}_zone_7
         run_duration_number:
-          name: "${id} zone 7 time"
+          name: "${id}_zone_7_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_7
 
       - valve_switch: ${id}_zone_8
         run_duration_number:
-          name: "${id} zone 8 time"
+          name: "${id}_zone_8_time"
           initial_value: 5
           unit_of_measurement: min
         valve_switch_id: ${id}_valve_8
@@ -232,7 +232,7 @@ sprinkler:
 
 text_sensor:
   - platform: template
-    name: "${id} remaining current zone time"
+    name: "${id}_remaining_current_zone_time"
     update_interval: 1s
     lambda: |-
       auto t = id(${id}_sprinkler).time_remaining_active_valve();
@@ -245,7 +245,7 @@ text_sensor:
       return {"--:--"};
 
   - platform: template
-    name: "${id} remaining total time"
+    name: "${id}_remaining_total_time"
     update_interval: 1s
     lambda: |-
       auto t = id(${id}_sprinkler).time_remaining_current_operation();
