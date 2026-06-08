@@ -188,6 +188,7 @@ sprinkler:
     multiplier_number: "${id}_multiplier"
     repeat_number: "${id}_repeats"
     valve_overlap: 5s
+    device_id: ${device_id}
 
     valves:
       - valve_switch: ${id}_zone_1
@@ -258,6 +259,7 @@ sprinkler:
 text_sensor:
   - platform: template
     name: "${id}_remaining_current_zone_time"
+    device_id: ${device_id}
     update_interval: 1s
     lambda: |-
       auto t = id(${id}_sprinkler).time_remaining_active_valve();
@@ -271,6 +273,7 @@ text_sensor:
 
   - platform: template
     name: "${id}_remaining_total_time"
+    device_id: ${device_id}
     update_interval: 1s
     lambda: |-
       auto t = id(${id}_sprinkler).time_remaining_current_operation();
