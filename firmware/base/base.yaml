@@ -1,0 +1,62 @@
+esphome:
+  name: DEV-NAME
+  friendly_name: DEV-NAME
+  name_add_mac_suffix: false
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: XXXXXXXXX #<-change
+
+ota:
+  - platform: esphome
+    password: XXXXXXXXX #<-change
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  manual_ip:
+    static_ip: 10.10.20.XX
+    gateway: 10.10.20.1
+    subnet: 255.255.255.0
+    dns1: 10.10.20.1
+    dns2: 1.1.1.1
+
+  ap:
+    ssid: "Dev XX Fallback Hotspot"
+    password: "XXX"
+
+captive_portal:
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+
+
+#packages:
+#  ext1: !include
+#    file: XXXXX.yaml
+#    vars:
+#      id: ext1
+#      mcp_address: 0x20
+
+#packages:
+#  ext1:
+#    url: github://esphome/non-existant-repo/file1.yml@main
+#    vars:
+#      id: ext1
+#      mcp_address: 0x20
+
+# mapping input on output
+#binary_sensor.extX_in_1:
+#  on_press:
+#    then:
+#      - switch.toggle: extX_out_5

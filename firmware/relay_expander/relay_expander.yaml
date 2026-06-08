@@ -1,0 +1,87 @@
+
+# Add in main.yaml
+# vext1: !include
+#    file: sprinkler-expander.yaml
+#    vars:
+#      id: ext1
+#      mcp_address: 0x20
+
+substitutions:
+  id: sprinkler
+  mcp_address: 0x20
+
+
+mcp23017:
+  - id: ${id}_mcp
+    address: ${mcp_address}
+
+
+switch:
+  - platform: gpio
+    id: ${id}_valve_1
+    name: "${id} valve 1"
+    internal: true
+    pin:
+      mcp23017: ${id}_mcp
+      number: 0
+
+  - platform: gpio
+    id: ${id}_valve_2
+    name: "${id} valve 2"
+    internal: true
+    pin:
+      mcp23017: ${id}_mcp
+      number: 1
+
+
+sprinkler:
+  - id: ${id}_sprinkler
+    main_switch: "${id} start"
+    auto_advance_switch: "${id} auto"
+    reverse_switch: "${id} reverse"
+    multiplier_number: "${id} multiplier"
+    repeat_number: "${id} repeats"
+    valve_overlap: 5s
+
+    valves:
+      - valve_switch: ${id}_zone_1
+        run_duration_number:
+          name: "${id} zone 1 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_1
+
+      - valve_switch: ${id}_zone_2
+        run_duration_number:
+          name: "${id} zone 2 time"
+          initial_value: 5
+          unit_of_measurement: min
+        valve_switch_id: ${id}_valve_2
+
+
+text_sensor:
+  - platform: template
+    name: "${id} remaining zone time"
+    update_interval: 1s
+    lambda: |-
+      auto t = id(${id}_sprinkler).time_remaining_active_valve();
+      if (t.has_value()) {
+        int sec = t.value();
+        char buf[10];
+        sprintf(buf, "%02d:%02d", sec/60, sec%60);
+        return {buf};
+      }
+      return {"--:--"};
+
+  - platform: template
+    name: "${id} remaining total time"
+    update_interval: 1s
+    lambda: |-
+      auto t = id(${id}_sprinkler).time_remaining_current_operation();
+      if (t.has_value()) {
+        int sec = t.value();
+        char buf[10];
+        sprintf(buf, "%02d:%02d", sec/60, sec%60);
+        return {buf};
+      }
+      return {"--:--"};
