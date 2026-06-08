@@ -50,7 +50,7 @@ i2c:
 
 #packages:
 #  ext1:
-#    url: github://esphome/non-existant-repo/file1.yml@main
+#    url: github://wojtek-00/HomeAutomation/firmware/<DIR>/<FILE>@main
 #    vars:
 #      id: ext1
 #      mcp_address: 0x20
