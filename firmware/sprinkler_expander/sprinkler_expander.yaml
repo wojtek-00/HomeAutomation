@@ -9,6 +9,7 @@
 substitutions:
   id: sprinkler
   mcp_address: 0x20
+  device_id: sprinklers_1
 
 
 mcp23017:
@@ -24,6 +25,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in0
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in1
     pin:
@@ -32,6 +34,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in1
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in2
     pin:
@@ -40,6 +43,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in2
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in3
     pin:
@@ -48,6 +52,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in3
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in4
     pin:
@@ -56,6 +61,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in4
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in5
     pin:
@@ -64,6 +70,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in5
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in6
     pin:
@@ -72,6 +79,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in6
+    device_id: ${device_id}
   - platform: gpio
     name: ${id}_in7
     pin:
@@ -80,6 +88,7 @@ binary_sensor:
       mode: INPUT
       inverted: True
     id: ${id}_in7
+    device_id: ${device_id}
     
 switch:
   - platform: gpio
