@@ -24,6 +24,8 @@ switch:
     pin:
       mcp23017: ${id}_mcp
       number: 0
+      mode: OUTPUT
+      inverted: True
 
   - platform: gpio
     id: ${id}_valve_2
@@ -32,6 +34,8 @@ switch:
     pin:
       mcp23017: ${id}_mcp
       number: 1
+      mode: OUTPUT
+      inverted: True
 
 
 sprinkler:
