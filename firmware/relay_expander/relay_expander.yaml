@@ -11,7 +11,7 @@ substitutions:
   mcp_address: 0x20
 
 
-mcp23017:
+mcp23xxx:
   - id: ${id}_mcp
     address: ${mcp_address}
 
