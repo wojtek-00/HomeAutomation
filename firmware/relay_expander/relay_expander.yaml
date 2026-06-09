@@ -1,14 +1,20 @@
-
 # Add in main.yaml
-# vext1: !include
-#    file: sprinkler-expander.yaml
-#    vars:
-#      id: ext1
-#      mcp_address: 0x20
+# packages:
+#   ext1:
+#     url: https://github.com/wojtek-00/HomeAutomation
+#     ref: relay_module
+#     files:
+#       - path: firmware/relay_expander/relay_expander.yaml
+#         vars:
+#           device_id: relay_expander_1
+#           id: expander_1
+#           mcp_address: 32
+#           refresh: 0d
 
 substitutions:
   id: sprinkler
   mcp_address: 0x20
+  device_id: extender_1
 
 mcp23017:
   - id: ${id}_mcp
@@ -17,6 +23,7 @@ mcp23017:
 binary_sensor:
   - platform: gpio
     name: ${id}_in0
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 8
@@ -25,6 +32,7 @@ binary_sensor:
     id: ${id}_in0
   - platform: gpio
     name: ${id}_in1
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 9
@@ -33,6 +41,7 @@ binary_sensor:
     id: ${id}_in1
   - platform: gpio
     name: ${id}_in2
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 10
@@ -41,6 +50,7 @@ binary_sensor:
     id: ${id}_in2
   - platform: gpio
     name: ${id}_in3
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 11
@@ -49,6 +59,7 @@ binary_sensor:
     id: ${id}_in3
   - platform: gpio
     name: ${id}_in4
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 12
@@ -57,6 +68,7 @@ binary_sensor:
     id: ${id}_in4
   - platform: gpio
     name: ${id}_in5
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 13
@@ -65,6 +77,7 @@ binary_sensor:
     id: ${id}_in5
   - platform: gpio
     name: ${id}_in6
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 14
@@ -73,6 +86,7 @@ binary_sensor:
     id: ${id}_in6
   - platform: gpio
     name: ${id}_in7
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 15
@@ -84,6 +98,7 @@ binary_sensor:
 switch:
   - platform: gpio
     name: ${id}_out0
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 0
@@ -92,6 +107,7 @@ switch:
     id: ${id}_out0
   - platform: gpio
     name: ${id}_out1
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 1
@@ -100,6 +116,7 @@ switch:
     id: ${id}hub1_out1
   - platform: gpio
     name: ${id}_out2
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 2
@@ -108,6 +125,7 @@ switch:
     id: ${id}_out2
   - platform: gpio
     name: ${id}_out3
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 3
@@ -116,6 +134,7 @@ switch:
     id: ${id}hub1_out3
   - platform: gpio
     name: ${id}_out4
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 4
@@ -124,6 +143,7 @@ switch:
     id: ${id}_out4
   - platform: gpio
     name: ${id}_out5
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 5
@@ -132,6 +152,7 @@ switch:
     id: ${id}_out5
   - platform: gpio
     name: ${id}_out6
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 6
@@ -140,6 +161,7 @@ switch:
     id: ${id}_out6
   - platform: gpio
     name: ${id}_out7
+    device_id: ${device_id}
     pin:
       mcp23xxx: ${id}_mcp
       number: 7
