@@ -1,0 +1,138 @@
+substitutions:
+  entity_id: gates_expander
+  mcp_address: 0x20
+  device_id: extender_1
+  gate_name: "Brama Wjazdowa"
+
+mcp23017:
+  - id: ${entity_id}_mcp
+    address: ${mcp_address}
+
+globals:
+  - id: gate_stop_active
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+  - id: gate_position
+    type: float
+    restore_value: true
+    initial_value: '0.0'  # 0 = zamknięta, 100 = otwarta
+
+# ============================================
+# PRZEKAŹNIKI (FIZYCZNE) - używamy pinów z MCP23017
+# ============================================
+switch:
+  # Przekaźnik dla funkcji OPEN
+  - platform: gpio
+    name: "${entity_id}_relay_open"
+    id: ${entity_id}_relay_open
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 0      # GPIO0 na MCP23017
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+    
+  # Przekaźnik dla funkcji CLOSE
+  - platform: gpio
+    name: "${entity_id}_relay_close"
+    id: ${entity_id}_relay_close
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 1      # GPIO1 na MCP23017
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+    
+  # Przekaźnik dla funkcji STOP
+  - platform: gpio
+    name: "${entity_id}_relay_stop"
+    id: ${entity_id}_relay_stop
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 2      # GPIO2 na MCP23017
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+  # Przekaźnik wirtualny do przytrzymania OPEN
+  - platform: template
+    name: "${entity_id}_open_hold"
+    id: ${entity_id}_open_hold
+    device_id: ${device_id}
+    icon: "mdi:gate-open"
+    optimistic: true
+    turn_on_action:
+      - logger.log: "OPEN HOLD - włączam przekaźnik OPEN"
+      - switch.turn_on: ${entity_id}_relay_open
+    turn_off_action:
+      - logger.log: "OPEN HOLD - wyłączam przekaźnik OPEN"
+      - switch.turn_off: ${entity_id}_relay_open
+
+# ============================================
+# COVER
+# ============================================
+cover:
+  - platform: template
+    name: "${gate_name}"
+    id: ${entity_id}_gate
+    device_id: ${device_id}
+    device_class: gate
+    lambda: |-
+      return id(gate_position);
+    open_action:
+      - script.execute: ${entity_id}_deactivate_stop
+      - script.execute: ${entity_id}_deactivate_open_hold
+      - delay: 500ms
+      - switch.turn_on: ${entity_id}_relay_open
+      - delay: 1000ms
+      - switch.turn_off: ${entity_id}_relay_open
+    close_action:
+      - script.execute: ${entity_id}_deactivate_stop
+      - script.execute: ${entity_id}_deactivate_open_hold
+      - delay: 500ms
+      - switch.turn_on: ${entity_id}_relay_close
+      - delay: 1000ms
+      - switch.turn_off: ${entity_id}_relay_close
+    stop_action:
+      - script.execute: ${entity_id}_deactivate_open_hold
+      - if:
+          condition:
+            lambda: 'return id(gate_stop_active) == false;'
+          then:
+            - script.execute: ${entity_id}_activate_stop
+          else:
+            - script.execute: ${entity_id}_deactivate_stop
+    optimistic: true
+    assumed_state: true
+
+# ============================================
+# SKRYPTY
+# ============================================
+script:
+  - id: ${entity_id}_deactivate_stop
+    then:
+      - logger.log: "Dezaktywacja STOP"
+      - switch.turn_off: ${entity_id}_relay_stop
+      - globals.set:
+          id: gate_stop_active
+          value: 'false'
+
+  - id: ${entity_id}_activate_stop
+    then:
+      - logger.log: "Aktywacja STOP"
+      - switch.turn_on: ${entity_id}_relay_stop
+      - delay: 200ms
+      - switch.turn_off: ${entity_id}_relay_stop
+      - globals.set:
+          id: gate_stop_active
+          value: 'true'
+
+  - id: ${entity_id}_deactivate_open_hold
+    then:
+      - logger.log: "Dezaktywacja OPEN HOLD"
+      - switch.turn_off: ${entity_id}_open_hold

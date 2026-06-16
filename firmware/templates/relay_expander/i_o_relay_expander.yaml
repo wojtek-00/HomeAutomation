@@ -1,0 +1,170 @@
+# Add in main.yaml
+# packages:
+#   ext1:
+#     url: https://github.com/wojtek-00/HomeAutomation
+#     ref: relay_module
+#     files:
+#       - path: firmware/relay_expander/relay_expander.yaml
+#         vars:
+#           device_id: relay_expander_1
+#           id: expander_1
+#           mcp_address: 32
+#           refresh: 0d
+
+substitutions:
+  entity_id: i_o_relay_expander
+  mcp_address: 0x20
+  device_id: extender_1
+
+mcp23017:
+  - id: ${entity_id}_mcp
+    address: ${mcp_address}
+
+binary_sensor:
+  - platform: gpio
+    name: ${entity_id}_in0
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 8
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in0
+  - platform: gpio
+    name: ${entity_id}_in1
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 9
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in1
+  - platform: gpio
+    name: ${entity_id}_in2
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 10
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in2
+  - platform: gpio
+    name: ${entity_id}_in3
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 11
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in3
+  - platform: gpio
+    name: ${entity_id}_in4
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 12
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in4
+  - platform: gpio
+    name: ${entity_id}_in5
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 13
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in5
+  - platform: gpio
+    name: ${entity_id}_in6
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 14
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in6
+  - platform: gpio
+    name: ${entity_id}_in7
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 15
+      mode: INPUT
+      inverted: True
+    id: ${entity_id}_in7
+  
+
+switch:
+  - platform: gpio
+    name: ${entity_id}_out0
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 0
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}_out0
+  - platform: gpio
+    name: ${entity_id}_out1
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 1
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}hub1_out1
+  - platform: gpio
+    name: ${entity_id}_out2
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 2
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}_out2
+  - platform: gpio
+    name: ${entity_id}_out3
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 3
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}hub1_out3
+  - platform: gpio
+    name: ${entity_id}_out4
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 4
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}_out4
+  - platform: gpio
+    name: ${entity_id}_out5
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 5
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}_out5
+  - platform: gpio
+    name: ${entity_id}_out6
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 6
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}_out6
+  - platform: gpio
+    name: ${entity_id}_out7
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${entity_id}_mcp
+      number: 7
+      mode: OUTPUT
+      inverted: False
+    id: ${entity_id}_out7

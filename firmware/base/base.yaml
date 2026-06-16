@@ -1,62 +1,45 @@
-esphome:
-  name: DEV-NAME
-  friendly_name: DEV-NAME
-  name_add_mac_suffix: false
+# base.yaml
 
-esp32:
-  board: esp32-s3-devkitc-1
-  framework:
-    type: esp-idf
-
-logger:
-
-api:
-  encryption:
-    key: XXXXXXXXX #<-change
-
-ota:
-  - platform: esphome
-    password: XXXXXXXXX #<-change
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-
-  manual_ip:
-    static_ip: 10.10.20.XX
-    gateway: 10.10.20.1
-    subnet: 255.255.255.0
-    dns1: 10.10.20.1
-    dns2: 1.1.1.1
-
-  ap:
-    ssid: "Dev XX Fallback Hotspot"
-    password: "XXX"
-
-captive_portal:
+substitutions:
+  sda: GPIO13
+  scl: GPIO14
+  led_green: GPIO9
+  led_red: GPIO10
+  led_blue: GPIO11
 
 i2c:
-  sda: GPIO21
-  scl: GPIO22
+  sda: ${sda}
+  scl: ${scl}
   scan: true
 
+# Konfiguracja diod LED jako output
+output:
+  - platform: gpio
+    pin: ${led_green}
+    id: output_led_green
+    inverted: false  # Ustaw na true jeśli dioda świeci przy stanie LOW
+    
+  - platform: gpio
+    pin: ${led_red}
+    id: output_led_red
+    inverted: false
+    
+  - platform: gpio
+    pin: ${led_blue}
+    id: output_led_blue
+    inverted: false
 
-#packages:
-#  ext1: !include
-#    file: XXXXX.yaml
-#    vars:
-#      id: ext1
-#      mcp_address: 0x20
+# Zmienna do przechowywania stanu
+globals:
+  - id: blink_state
+    type: bool
+    restore_value: no
+    initial_value: 'false'
 
-#packages:
-#  ext1:
-#    url: github://wojtek-00/HomeAutomation/firmware/<DIR>/<FILE>@main
-#    vars:
-#      id: ext1
-#      mcp_address: 0x20
-
-# mapping input on output
-#binary_sensor.extX_in_1:
-#  on_press:
-#    then:
-#      - switch.toggle: extX_out_5
+# Interval co 15 sekund (1s on + 14s off)
+interval:
+  - interval: 10s
+    then:
+      - output.turn_on: output_led_blue
+      - delay: 500ms
+      - output.turn_off: output_led_blue
