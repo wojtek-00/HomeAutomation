@@ -1,0 +1,236 @@
+substitutions:
+  # Podstawowe
+  entity_id: gate1
+  device_id: extender_1
+  
+  # MCP - używamy ID z głównego pliku
+  mcp_id: mcp_1                       # <-- zmienione z mcp_address na mcp_id
+  
+  # Piny na MCP23017
+  relay_open_pin: 0
+  relay_close_pin: 1
+  relay_stop_pin: 2
+  button_pin: 3
+  
+  # Czas wyzwalania przekaźnika
+  relay_trigger_time: 1s
+
+# ============================================
+# NIE DEFINIUJEMY MCP23017 TUTAJ - jest w głównym pliku
+# ============================================
+
+globals:
+  - id: ${entity_id}_gate_stop_active
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+  - id: ${entity_id}_gate_position
+    type: float
+    restore_value: true
+    initial_value: '0.0'
+
+  - id: ${entity_id}_button_state
+    type: int
+    restore_value: true
+    initial_value: '0'
+
+# ============================================
+# PRZYCISK FIZYCZNY
+# ============================================
+binary_sensor:
+  - platform: gpio
+    name: "${entity_id}_physical_button"
+    id: ${entity_id}_button
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}              # <-- używamy mcp_id zamiast entity_id_mcp
+      number: ${button_pin}
+      mode: INPUT
+      inverted: true
+    filters:
+      - delayed_on_off: 50ms
+    on_click:
+      - min_length: 50ms
+        max_length: 1000ms
+        then:
+          - logger.log: "${entity_id}: Krótkie kliknięcie"
+          - script.execute: ${entity_id}_handle_short_press
+    on_multi_click:
+      - timing:
+          - ON for at least 1000ms
+        then:
+          - logger.log: "${entity_id}: Długie przytrzymanie"
+          - globals.set:
+              id: ${entity_id}_button_state
+              value: '0'
+          - switch.turn_on: ${entity_id}_open_hold
+
+# ============================================
+# PRZYCISKI WIRTUALNE (do testów)
+# ============================================
+button:
+  - platform: template
+    name: "${entity_id}_virtual_click"
+    id: ${entity_id}_virtual_click
+    device_id: ${device_id}
+    icon: "mdi:gesture-tap-button"
+    on_press:
+      - logger.log: "${entity_id}: Wirtualny klik"
+      - script.execute: ${entity_id}_handle_short_press
+
+  - platform: template
+    name: "${entity_id}_virtual_hold"
+    id: ${entity_id}_virtual_hold
+    device_id: ${device_id}
+    icon: "mdi:gesture-tap-hold"
+    on_press:
+      - logger.log: "${entity_id}: Wirtualny hold"
+      - globals.set:
+          id: ${entity_id}_button_state
+          value: '0'
+      - switch.turn_on: ${entity_id}_open_hold
+
+# ============================================
+# PRZEKAŹNIKI
+# ============================================
+switch:
+  - platform: gpio
+    name: "${entity_id}_relay_open"
+    id: ${entity_id}_relay_open
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}              # <-- używamy mcp_id
+      number: ${relay_open_pin}
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+  - platform: gpio
+    name: "${entity_id}_relay_close"
+    id: ${entity_id}_relay_close
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}              # <-- używamy mcp_id
+      number: ${relay_close_pin}
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+  - platform: gpio
+    name: "${entity_id}_relay_stop"
+    id: ${entity_id}_relay_stop
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}              # <-- używamy mcp_id
+      number: ${relay_stop_pin}
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+  - platform: template
+    name: "${entity_id}_open_hold"
+    id: ${entity_id}_open_hold
+    device_id: ${device_id}
+    icon: "mdi:gate-open"
+    optimistic: true
+    turn_on_action:
+      - logger.log: "${entity_id}: OPEN HOLD ON"
+      - switch.turn_on: ${entity_id}_relay_open
+    turn_off_action:
+      - logger.log: "${entity_id}: OPEN HOLD OFF"
+      - switch.turn_off: ${entity_id}_relay_open
+
+# ============================================
+# COVER
+# ============================================
+cover:
+  - platform: template
+    name: ${entity_id}_gate_cover
+    id: ${entity_id}_cover
+    device_id: ${device_id}
+    device_class: gate
+    lambda: |-
+      return id(${entity_id}_gate_position);
+    open_action:
+      - script.execute: ${entity_id}_deactivate_stop
+      - script.execute: ${entity_id}_deactivate_open_hold
+      - delay: 500ms
+      - script.execute: ${entity_id}_open_gate
+    close_action:
+      - script.execute: ${entity_id}_deactivate_stop
+      - script.execute: ${entity_id}_deactivate_open_hold
+      - delay: 500ms
+      - script.execute: ${entity_id}_close_gate
+    stop_action:
+      - script.execute: ${entity_id}_deactivate_open_hold
+      - script.execute: ${entity_id}_activate_stop
+    optimistic: true
+    assumed_state: true
+
+# ============================================
+# SKRYPTY
+# ============================================
+script:
+  - id: ${entity_id}_deactivate_stop
+    then:
+      - logger.log: "${entity_id}: Dezaktywacja STOP"
+      - switch.turn_off: ${entity_id}_relay_stop
+      - globals.set:
+          id: ${entity_id}_gate_stop_active
+          value: 'false'
+
+  - id: ${entity_id}_activate_stop
+    then:
+      - logger.log: "${entity_id}: Aktywacja STOP"
+      - switch.turn_on: ${entity_id}_relay_stop
+      - globals.set:
+          id: ${entity_id}_gate_stop_active
+          value: 'true'
+
+  - id: ${entity_id}_deactivate_open_hold
+    then:
+      - logger.log: "${entity_id}: Dezaktywacja OPEN HOLD"
+      - switch.turn_off: ${entity_id}_open_hold
+
+  - id: ${entity_id}_close_gate
+    then:
+      - logger.log: "${entity_id}: Zamykanie"
+      - switch.turn_on: ${entity_id}_relay_close
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay_close
+
+  - id: ${entity_id}_open_gate
+    then:
+      - logger.log: "${entity_id}: Otwieranie"
+      - switch.turn_on: ${entity_id}_relay_open
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay_open
+
+  - id: ${entity_id}_handle_short_press
+    then:
+      - logger.log: "${entity_id}: Przełączanie stanu"
+      - lambda: |-
+          int current = id(${entity_id}_button_state);
+          current = (current + 1) % 4;
+          id(${entity_id}_button_state) = current;
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 0;'
+          then:
+            - cover.open: ${entity_id}_cover
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 1;'
+          then:
+            - cover.stop: ${entity_id}_cover
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 2;'
+          then:
+            - cover.close: ${entity_id}_cover
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 3;'
+          then:
+            - cover.stop: ${entity_id}_cover
