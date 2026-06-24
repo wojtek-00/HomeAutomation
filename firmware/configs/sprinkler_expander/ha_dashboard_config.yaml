@@ -1,0 +1,434 @@
+views:
+  - type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+          - type: horizontal-stack
+            title: System Nawadniania
+            cards:
+              - show_name: true
+                show_icon: true
+                type: button
+                entity: switch.garaz_automationnode_garage_sprinklers_start
+                name: Włącz cykl
+                icon: mdi:play-circle
+                tap_action:
+                  action: toggle
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: sensor.garaz_automationnode_garage_wifi_sygnal_procent
+                        name: WiFi
+                        min: 0
+                        max: 100
+                      - type: button
+                        name: Reset
+                        entity: >-
+                          button.garaz_automationnode_garage_automation_node_restart
+                        icon: mdi:restart
+                        tap_action:
+                          action: call-service
+                          service: button.press
+                          target:
+                            entity_id: button.podlewanie_restart_sterownika_podlewania
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: >-
+                          number.garaz_automationnode_garage_sprinklers_multiplier
+                        name: Mnożnik
+                        min: 0
+                        max: 5
+                      - type: gauge
+                        entity: number.garaz_automationnode_garage_sprinklers_repeats
+                        name: Powtórzenia
+                        min: 0
+                        max: 5
+                      - show_name: true
+                        name: Odwrotna kolejność
+                        show_icon: true
+                        type: button
+                        entity: switch.garaz_automationnode_garage_sprinklers_reverse
+                        icon: mdi:swap-horizontal
+                        tap_action:
+                          action: toggle
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+          - type: horizontal-stack
+            title: tbd 1
+            cards:
+              - show_name: false
+                show_icon: true
+                type: button
+                entity: switch.garaz_automationnode_garage_sprinklers_zone_1
+                name: tbd
+                icon: mdi:sprinkler
+                tap_action:
+                  action: toggle
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: >-
+                          number.garaz_automationnode_garage_sprinklers_zone_1_time
+                        name: Czas
+                        min: 1
+                        max: 30
+                        needle: false
+                      - show_name: true
+                        show_icon: true
+                        type: button
+                        name: W cyklu podlewania
+                        entity: >-
+                          switch.garaz_automationnode_garage_sprinklers_enable_zone_1
+                        icon: mdi:check-circle-outline
+                        tap_action:
+                          action: toggle
+                  - type: horizontal-stack
+                    cards:
+                      - type: history-graph
+                        entities:
+                          - entity: >-
+                              switch.garaz_automationnode_garage_sprinklers_zone_1
+                            name: Zawór
+                        hours_to_show: 22
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+          - type: horizontal-stack
+            title: tbd 2
+            cards:
+              - show_name: false
+                show_icon: true
+                type: button
+                entity: switch.garaz_automationnode_garage_sprinklers_zone_2
+                name: tbd
+                icon: mdi:sprinkler
+                tap_action:
+                  action: toggle
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: >-
+                          number.garaz_automationnode_garage_sprinklers_zone_2_time
+                        name: Czas
+                        min: 1
+                        max: 30
+                        needle: false
+                      - show_name: true
+                        show_icon: true
+                        type: button
+                        name: W cyklu podlewania
+                        entity: >-
+                          switch.garaz_automationnode_garage_sprinklers_enable_zone_2
+                        icon: mdi:check-circle-outline
+                        tap_action:
+                          action: toggle
+                  - type: horizontal-stack
+                    cards:
+                      - type: history-graph
+                        entities:
+                          - entity: >-
+                              switch.garaz_automationnode_garage_sprinklers_zone_2
+                            name: Zawór
+                        hours_to_show: 22
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+          - type: horizontal-stack
+            title: tbd 3
+            cards:
+              - show_name: false
+                show_icon: true
+                type: button
+                entity: switch.garaz_automationnode_garage_sprinklers_zone_3
+                name: tbd
+                icon: mdi:sprinkler
+                tap_action:
+                  action: toggle
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: >-
+                          number.garaz_automationnode_garage_sprinklers_zone_3_time
+                        name: Czas
+                        min: 1
+                        max: 30
+                        needle: false
+                      - show_name: true
+                        show_icon: true
+                        type: button
+                        name: W cyklu podlewania
+                        entity: >-
+                          switch.garaz_automationnode_garage_sprinklers_enable_zone_3
+                        icon: mdi:check-circle-outline
+                        tap_action:
+                          action: toggle
+                  - type: horizontal-stack
+                    cards:
+                      - type: history-graph
+                        entities:
+                          - entity: >-
+                              switch.garaz_automationnode_garage_sprinklers_zone_3
+                            name: Zawór
+                        hours_to_show: 22
+      # - type: grid
+      #   cards:
+      #     - type: heading
+      #       heading_style: title
+      #     - type: horizontal-stack
+      #       title: tbd 4
+      #       cards:
+      #         - show_name: false
+      #           show_icon: true
+      #           type: button
+      #           entity: switch.garaz_automationnode_garage_sprinklers_zone_4
+      #           name: tbd
+      #           icon: mdi:sprinkler
+      #           tap_action:
+      #             action: toggle
+      #         - type: vertical-stack
+      #           cards:
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: gauge
+      #                   entity: >-
+      #                     number.garaz_automationnode_garage_sprinklers_zone_4_time
+      #                   name: Czas
+      #                   min: 1
+      #                   max: 30
+      #                   needle: false
+      #                 - show_name: true
+      #                   show_icon: true
+      #                   type: button
+      #                   name: W cyklu podlewania
+      #                   entity: >-
+      #                     switch.garaz_automationnode_garage_sprinklers_enable_zone_4
+      #                   icon: mdi:check-circle-outline
+      #                   tap_action:
+      #                     action: toggle
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: history-graph
+      #                   entities:
+      #                     - entity: >-
+      #                         switch.garaz_automationnode_garage_sprinklers_zone_4
+      #                       name: Zawór
+      #                   hours_to_show: 22
+      # - type: grid
+      #   cards:
+      #     - type: heading
+      #       heading_style: title
+      #     - type: horizontal-stack
+      #       title: tbd 5
+      #       cards:
+      #         - show_name: false
+      #           show_icon: true
+      #           type: button
+      #           entity: switch.garaz_automationnode_garage_sprinklers_zone_5
+      #           name: tbd
+      #           icon: mdi:sprinkler
+      #           tap_action:
+      #             action: toggle
+      #         - type: vertical-stack
+      #           cards:
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: gauge
+      #                   entity: >-
+      #                     number.garaz_automationnode_garage_sprinklers_zone_5_time
+      #                   name: Czas
+      #                   min: 1
+      #                   max: 30
+      #                   needle: false
+      #                 - show_name: true
+      #                   show_icon: true
+      #                   type: button
+      #                   name: W cyklu podlewania
+      #                   entity: >-
+      #                     switch.garaz_automationnode_garage_sprinklers_enable_zone_5
+      #                   icon: mdi:check-circle-outline
+      #                   tap_action:
+      #                     action: toggle
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: history-graph
+      #                   entities:
+      #                     - entity: >-
+      #                         switch.garaz_automationnode_garage_sprinklers_zone_5
+      #                       name: Zawór
+      #                   hours_to_show: 22
+      # - type: grid
+      #   cards:
+      #     - type: heading
+      #       heading_style: title
+      #     - type: horizontal-stack
+      #       title: tbd 6
+      #       cards:
+      #         - show_name: false
+      #           show_icon: true
+      #           type: button
+      #           entity: switch.garaz_automationnode_garage_sprinklers_zone_6
+      #           name: tbd
+      #           icon: mdi:sprinkler
+      #           tap_action:
+      #             action: toggle
+      #         - type: vertical-stack
+      #           cards:
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: gauge
+      #                   entity: >-
+      #                     number.garaz_automationnode_garage_sprinklers_zone_6_time
+      #                   name: Czas
+      #                   min: 1
+      #                   max: 30
+      #                   needle: false
+      #                 - show_name: true
+      #                   show_icon: true
+      #                   type: button
+      #                   name: W cyklu podlewania
+      #                   entity: >-
+      #                     switch.garaz_automationnode_garage_sprinklers_enable_zone_6
+      #                   icon: mdi:check-circle-outline
+      #                   tap_action:
+      #                     action: toggle
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: history-graph
+      #                   entities:
+      #                     - entity: >-
+      #                         switch.garaz_automationnode_garage_sprinklers_zone_6
+      #                       name: Zawór
+      #                   hours_to_show: 22
+      # - type: grid
+      #   cards:
+      #     - type: heading
+      #       heading_style: title
+      #     - type: horizontal-stack
+      #       title: tbd 7
+      #       cards:
+      #         - show_name: false
+      #           show_icon: true
+      #           type: button
+      #           entity: switch.garaz_automationnode_garage_sprinklers_zone_7
+      #           name: tbd
+      #           icon: mdi:sprinkler
+      #           tap_action:
+      #             action: toggle
+      #         - type: vertical-stack
+      #           cards:
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: gauge
+      #                   entity: >-
+      #                     number.garaz_automationnode_garage_sprinklers_zone_7_time
+      #                   name: Czas
+      #                   min: 1
+      #                   max: 30
+      #                   needle: false
+      #                 - show_name: true
+      #                   show_icon: true
+      #                   type: button
+      #                   name: W cyklu podlewania
+      #                   entity: >-
+      #                     switch.garaz_automationnode_garage_sprinklers_enable_zone_7
+      #                   icon: mdi:check-circle-outline
+      #                   tap_action:
+      #                     action: toggle
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: history-graph
+      #                   entities:
+      #                     - entity: >-
+      #                         switch.garaz_automationnode_garage_sprinklers_zone_7
+      #                       name: Zawór
+      #                   hours_to_show: 22
+      # - type: grid
+      #   cards:
+      #     - type: heading
+      #       heading_style: title
+      #     - type: horizontal-stack
+      #       title: tbd 8
+      #       cards:
+      #         - show_name: false
+      #           show_icon: true
+      #           type: button
+      #           entity: switch.garaz_automationnode_garage_sprinklers_zone_8
+      #           name: tbd
+      #           icon: mdi:sprinkler
+      #           tap_action:
+      #             action: toggle
+      #         - type: vertical-stack
+      #           cards:
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: gauge
+      #                   entity: >-
+      #                     number.garaz_automationnode_garage_sprinklers_zone_8_time
+      #                   name: Czas
+      #                   min: 1
+      #                   max: 30
+      #                   needle: false
+      #                 - show_name: true
+      #                   show_icon: true
+      #                   type: button
+      #                   name: W cyklu podlewania
+      #                   entity: >-
+      #                     switch.garaz_automationnode_garage_sprinklers_enable_zone_8
+      #                   icon: mdi:check-circle-outline
+      #                   tap_action:
+      #                     action: toggle
+      #             - type: horizontal-stack
+      #               cards:
+      #                 - type: history-graph
+      #                   entities:
+      #                     - entity: >-
+      #                         switch.garaz_automationnode_garage_sprinklers_zone_8
+      #                       name: Zawór
+      #                   hours_to_show: 22
+    badges:
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: >-
+          sensor.garaz_automationnode_garage_sprinklers_remaining_current_zone_time
+        name: Pozostały czas podlewania obecnej sekcji
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        name: Pozostały czas podlewania całości
+        entity: sensor.garaz_automationnode_garage_sprinklers_remaining_total_time
+    max_columns: 4
+    title: Sterowanie
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Harmonogram
+    path: harmonogram
+    sections:
+      - type: grid
+        cards:
+          - type: entities
+            title: Harmonogram podlewania
+            entities:
+              - schedule.podlewanie_harmonogram
+      - type: grid
+        cards:
+          - type: heading
+            heading: Nowa sekcja

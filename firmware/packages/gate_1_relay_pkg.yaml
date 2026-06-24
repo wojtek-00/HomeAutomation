@@ -1,0 +1,193 @@
+substitutions:
+  # Podstawowe
+  entity_id: gate1
+  device_id: extender_1
+  
+  # MCP - używamy ID z głównego pliku
+  mcp_id: mcp_1
+  
+  # Piny na MCP23017
+  relay_pin: 0
+  button_pin: 1
+  sensor_gate_closed_pin: 2
+  sensor_gate_opened_pin: 3
+  
+  # Czas wyzwalania przekaźnika
+  relay_trigger_time: 1s
+
+# ============================================
+# NIE DEFINIUJEMY MCP23017 TUTAJ - jest w głównym pliku
+# ============================================
+
+globals:
+  - id: ${entity_id}_gate_state
+    type: int
+    restore_value: true
+    initial_value: '0'
+    # 0 - closed, 1 - opening, 2 - opened, 3 - closing
+
+# ============================================
+# PRZYCISK FIZYCZNY
+# ============================================
+binary_sensor:
+  - platform: gpio
+    name: "${entity_id}_physical_button"
+    id: ${entity_id}_button
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}
+      number: ${button_pin}
+      mode: INPUT
+      inverted: true
+    on_press:
+      then:
+        - cover.toggle: ${entity_id}_cover
+
+  - platform: gpio
+    name: "${entity_id}_sensor_opened_gate"
+    id: ${entity_id}_sensor_opened_gate
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}
+      number: ${sensor_gate_opened_pin}
+      mode: INPUT
+      inverted: false
+    on_press:
+      then:
+        - logger.log: "${entity_id}: Sensor Gate Opened"
+        - lambda: 'id(${entity_id}_gate_state) = 2;'  # OPEN
+
+  - platform: gpio
+    name: "${entity_id}_sensor_closed_gate"
+    id: ${entity_id}_sensor_closed_gate
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}
+      number: ${sensor_gate_closed_pin}
+      mode: INPUT
+      inverted: false
+    on_press:
+      then:
+        - logger.log: "${entity_id}: Sensor Gate Closed"
+        - lambda: 'id(${entity_id}_gate_state) = 0;'  # CLOSED
+
+# ============================================
+# PRZYCISKI WIRTUALNE (do testów)
+# ============================================
+button:
+  - platform: template
+    name: "${entity_id}_virtual_click"
+    id: ${entity_id}_virtual_click
+    device_id: ${device_id}
+    icon: "mdi:gesture-tap-button"
+    on_press:
+      then:
+        - logger.log: "${entity_id}: Wirtualny klik"
+        - cover.toggle: ${entity_id}_cover
+
+# ============================================
+# PRZEKAŹNIKI
+# ============================================
+switch:
+  - platform: gpio
+    name: "${entity_id}_relay"
+    id: ${entity_id}_relay
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}
+      number: ${relay_pin}
+      mode: OUTPUT
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+# ============================================
+# COVER - TERAZ Z DZIAŁAJĄCYM TOGGLE
+# ============================================
+cover:
+  - platform: template
+    name: ${entity_id}_gate_cover
+    id: ${entity_id}_cover
+    device_id: ${device_id}
+    device_class: gate
+    optimistic: true
+    assumed_state: false
+    
+    # Stan cover na podstawie gate_state
+    lambda: |-
+      if (id(${entity_id}_gate_state) == 0) {
+        return COVER_CLOSED;
+      } else if (id(${entity_id}_gate_state) == 1) {
+        return COVER_OPERATION_OPENING;
+      } else if (id(${entity_id}_gate_state) == 2) {
+        return COVER_OPEN;
+      } else if (id(${entity_id}_gate_state) == 3) {
+        return COVER_OPERATION_CLOSING;
+      } else {
+        return COVER_CLOSED;
+      }
+    
+    # Akcja otwierania - wywoływana przez cover.open lub cover.toggle (gdy stan CLOSED)
+    open_action:
+      then:
+        - logger.log: "${entity_id}: Otwieranie"
+        - lambda: 'id(${entity_id}_gate_state) = 1;'  # Ustaw stan na OPENING
+        - script.execute: ${entity_id}_one_relay_click
+        - delay: 5s  # Czekaj na otwarcie (dostosuj do swojej bramy)
+        - lambda: 'id(${entity_id}_gate_state) = 2;'  # Ustaw stan na OPEN
+    
+    # Akcja zamykania - wywoływana przez cover.close lub cover.toggle (gdy stan OPEN)
+    close_action:
+      then:
+        - logger.log: "${entity_id}: Zamykanie"
+        - lambda: 'id(${entity_id}_gate_state) = 3;'  # Ustaw stan na CLOSING
+        - script.execute: ${entity_id}_one_relay_click
+        - delay: 5s  # Czekaj na zamknięcie (dostosuj do swojej bramy)
+        - lambda: 'id(${entity_id}_gate_state) = 0;'  # Ustaw stan na CLOSED
+    
+    # Akcja stop - wywoływana przez cover.stop lub cover.toggle (gdy stan OPENING/CLOSING)
+    stop_action:
+      then:
+        - logger.log: "${entity_id}: Stop"
+        - script.execute: ${entity_id}_one_relay_click
+        # Stan pozostaje bez zmian (OPENING lub CLOSING)
+        # Możesz dodać delay i ustawić stan na OPEN lub CLOSED jeśli chcesz
+
+# ============================================
+# SKRYPTY
+# ============================================
+script:
+  - id: ${entity_id}_one_relay_click
+    then:
+      - logger.log: "${entity_id}: one click"
+      - switch.turn_on: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+
+  - id: ${entity_id}_two_relay_click
+    then:
+      - logger.log: "${entity_id}: two click"
+      - switch.turn_on: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_on: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+
+  - id: ${entity_id}_three_relay_click
+    then:
+      - logger.log: "${entity_id}: three click"
+      - switch.turn_on: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_on: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_on: ${entity_id}_relay
+      - delay: ${relay_trigger_time}
+      - switch.turn_off: ${entity_id}_relay
+      - delay: ${relay_trigger_time}

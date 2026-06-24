@@ -1,0 +1,266 @@
+substitutions:
+  entity_id: gates_expander
+  mcp_address: 0x20
+  device_id: extender_1
+  gate_name: "Brama Wjazdowa"
+  relay_trigger_time: 1s
+
+mcp23017:
+  - id: garage_mcp
+    address: ${mcp_address}
+
+
+
+packages:
+  # gates_controller: !include
+  #   file: /my_components_firm/packages/gate_3_relays_pkg.yaml
+  #   vars:
+  #     entity_id: "entry_gate"
+  #     device_id: ${device_id}
+  #     mcp_id: garage_mcp                   # <-- używamy ID z głównego pliku
+  #     relay_open_pin: 0
+  #     relay_close_pin: 1
+  #     relay_stop_pin: 2
+  #     button_pin: 3
+  #     relay_trigger_time: 1s
+  # gates_controller_1: !include
+  #   file: /my_components_firm/packages/gate_3_relays_pkg.yaml
+  #   vars:
+  #     entity_id: "garage_gate_1"
+  #     device_id: ${device_id}
+  #     mcp_id: garage_mcp                    # <-- używamy ID z głównego pliku
+  #     relay_open_pin: 4
+  #     relay_close_pin: 5
+  #     relay_stop_pin: 6
+  #     button_pin: 7
+  #     relay_trigger_time: 1s
+  gates_controller_2: !include
+    file: /my_components_firm/packages/gate_1_relay_pkg.yaml
+    vars:
+      entity_id: "garage_gate_1"
+      device_id: ${device_id}
+      mcp_id: garage_mcp                    # <-- używamy ID z głównego pliku
+      relay_pin: 4
+      button_pin: 7
+      relay_trigger_time: 1s
+
+
+
+
+
+# globals:
+#   - id: gate_stop_active
+#     type: bool
+#     restore_value: no
+#     initial_value: 'false'
+
+#   - id: gate_position
+#     type: float
+#     restore_value: true
+#     initial_value: '0.0'  # 0 = zamknięta, 100 = otwarta
+  
+#   - id: button_state
+#     type: int
+#     restore_value: true
+#     initial_value: '0'    # 0 = OPEN, 1 = STOP, 2 = CLOSE, 3 = STOP
+
+# # ============================================
+# # PRZYCISK FIZYCZNY (BINARY SENSOR)
+# # ============================================
+# binary_sensor:
+#   - platform: gpio
+#     name: "${entity_id}_physical_button"
+#     id: ${entity_id}_button
+#     device_id: ${device_id}
+#     pin:
+#       mcp23xxx: ${entity_id}_mcp
+#       number: 3      # GPIO3 na MCP23017 - podłącz przycisk do masy
+#       mode: INPUT
+#       inverted: true
+#     filters:
+#       - delayed_on_off: 50ms  # Filtrowanie drgań styków
+#     on_click:
+#       - min_length: 50ms
+#         max_length: 1000ms
+#         then:
+#           - logger.log: "Krótkie kliknięcie - przełączanie stanu"
+#           - script.execute: ${entity_id}_handle_short_press
+#     on_multi_click:
+#     - timing:
+#         - ON for at least 1000ms
+#       then:
+#         - logger.log: "Długie przytrzymanie - OPEN HOLD"
+#         - globals.set:
+#             id: button_state
+#             value: '1'  # Reset do OPEN
+#         - switch.turn_on: ${entity_id}_open_hold
+
+# button:
+#   - platform: template
+#     name: "${entity_id}_virtual_click"
+#     id: ${entity_id}_virtual_click
+#     device_id: ${device_id}
+#     icon: "mdi:gesture-tap-button"
+#     on_press:
+#       - logger.log: "WIRTUALNY: krótkie kliknięcie"
+#       - script.execute: ${entity_id}_handle_short_press
+
+#   - platform: template
+#     name: "${entity_id}_virtual_hold"
+#     id: ${entity_id}_virtual_hold
+#     device_id: ${device_id}
+#     icon: "mdi:gesture-tap-hold"
+#     on_press:
+#       - logger.log: "WIRTUALNY: długie przytrzymanie"
+#       - globals.set:
+#           id: button_state
+#           value: '1'
+#       - switch.turn_on: ${entity_id}_open_hold
+
+# # ============================================
+# # PRZEKAŹNIKI (FIZYCZNE) - używamy pinów z MCP23017
+# # ============================================
+# switch:
+#   # Przekaźnik dla funkcji OPEN
+#   - platform: gpio
+#     name: "${entity_id}_relay_open"
+#     id: ${entity_id}_relay_open
+#     device_id: ${device_id}
+#     pin:
+#       mcp23xxx: ${entity_id}_mcp
+#       number: 0      # GPIO0 na MCP23017
+#       mode: OUTPUT
+#       inverted: true
+#     restore_mode: ALWAYS_OFF
+    
+#   # Przekaźnik dla funkcji CLOSE
+#   - platform: gpio
+#     name: "${entity_id}_relay_close"
+#     id: ${entity_id}_relay_close
+#     device_id: ${device_id}
+#     pin:
+#       mcp23xxx: ${entity_id}_mcp
+#       number: 1      # GPIO1 na MCP23017
+#       mode: OUTPUT
+#       inverted: true
+#     restore_mode: ALWAYS_OFF
+    
+#   # Przekaźnik dla funkcji STOP
+#   - platform: gpio
+#     name: "${entity_id}_relay_stop"
+#     id: ${entity_id}_relay_stop
+#     device_id: ${device_id}
+#     pin:
+#       mcp23xxx: ${entity_id}_mcp
+#       number: 2      # GPIO2 na MCP23017
+#       mode: OUTPUT
+#       inverted: true
+#     restore_mode: ALWAYS_OFF
+
+#   # Przekaźnik wirtualny do przytrzymania OPEN
+#   - platform: template
+#     name: "${entity_id}_open_hold"
+#     id: ${entity_id}_open_hold
+#     device_id: ${device_id}
+#     icon: "mdi:gate-open"
+#     optimistic: true
+#     turn_on_action:
+#       - logger.log: "OPEN HOLD - włączam przekaźnik OPEN"
+#       - switch.turn_on: ${entity_id}_relay_open
+#     turn_off_action:
+#       - logger.log: "OPEN HOLD - wyłączam przekaźnik OPEN"
+#       - switch.turn_off: ${entity_id}_relay_open
+
+# # ============================================
+# # COVER
+# # ============================================
+# cover:
+#   - platform: template
+#     name: "${gate_name}"
+#     id: ${entity_id}_gate
+#     device_id: ${device_id}
+#     device_class: gate
+#     lambda: |-
+#       return id(gate_position);
+#     open_action:
+#       - script.execute: ${entity_id}_deactivate_stop
+#       - script.execute: ${entity_id}_deactivate_open_hold
+#       - delay: 500ms
+#       - script.execute: ${entity_id}_open_gate
+#     close_action:
+#       - script.execute: ${entity_id}_deactivate_stop
+#       - script.execute: ${entity_id}_deactivate_open_hold
+#       - delay: 500ms
+#       - script.execute: ${entity_id}_close_gate
+#     stop_action:
+#       - script.execute: ${entity_id}_deactivate_open_hold
+#       - script.execute: ${entity_id}_activate_stop
+#     optimistic: true
+#     assumed_state: true
+
+# # ============================================
+# # SKRYPTY
+# # ============================================
+# script:
+#   - id: ${entity_id}_deactivate_stop
+#     then:
+#       - logger.log: "Dezaktywacja STOP"
+#       - switch.turn_off: ${entity_id}_relay_stop
+#       - globals.set:
+#           id: gate_stop_active
+#           value: 'false'
+
+#   - id: ${entity_id}_activate_stop
+#     then:
+#       - logger.log: "Aktywacja STOP"
+#       - switch.turn_on: ${entity_id}_relay_stop
+#       - globals.set:
+#           id: gate_stop_active
+#           value: 'true'
+
+#   - id: ${entity_id}_deactivate_open_hold
+#     then:
+#       - logger.log: "Dezaktywacja OPEN HOLD"
+#       - switch.turn_off: ${entity_id}_open_hold
+
+#   - id: ${entity_id}_close_gate
+#     then:
+#       - logger.log: "Close gate"
+#       - switch.turn_on: ${entity_id}_relay_close
+#       - delay: ${relay_trigger_time}
+#       - switch.turn_off: ${entity_id}_relay_close
+
+#   - id: ${entity_id}_open_gate
+#     then:
+#       - logger.log: "Open gate"
+#       - switch.turn_on: ${entity_id}_relay_open
+#       - delay: ${relay_trigger_time}
+#       - switch.turn_off: ${entity_id}_relay_open
+
+#   - id: ${entity_id}_handle_short_press
+#     then:
+#       - logger.log: "Przełączanie stanu"
+#       - lambda: |-
+#           int current = id(button_state);
+#           current = (current + 1) % 4;
+#           id(button_state) = current;
+#       - if:
+#           condition:
+#             lambda: 'return id(button_state) == 0;'
+#           then:
+#             - cover.open: ${entity_id}_gate
+#       - if:
+#           condition:
+#             lambda: 'return id(button_state) == 1;'
+#           then:
+#             - cover.stop: ${entity_id}_gate
+#       - if:
+#           condition:
+#             lambda: 'return id(button_state) == 2;'
+#           then:
+#             - cover.close: ${entity_id}_gate
+#       - if:
+#           condition:
+#             lambda: 'return id(button_state) == 3;'
+#           then:
+#             - cover.stop: ${entity_id}_gate

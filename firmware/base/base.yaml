@@ -12,6 +12,25 @@ i2c:
   scl: ${scl}
   scan: true
 
+
+sensor:
+  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+    name: "WiFi sygnał dB"
+    id: wifi_signal_db
+    update_interval: 60s
+    entity_category: "diagnostic"
+  - platform: copy # Reports the WiFi signal strength in %
+    source_id: wifi_signal_db
+    name: "WiFi sygnał procent"
+    filters:
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    unit_of_measurement: "Signal %"
+    entity_category: "diagnostic"
+
+button:
+  - platform: restart
+    name: "automation_node_restart"
+
 # Konfiguracja diod LED jako output
 output:
   - platform: gpio
@@ -43,3 +62,4 @@ interval:
       - output.turn_on: output_led_blue
       - delay: 500ms
       - output.turn_off: output_led_blue
+
