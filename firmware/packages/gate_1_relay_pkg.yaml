@@ -4,7 +4,7 @@ substitutions:
   device_id: extender_1
   
   # MCP - używamy ID z głównego pliku
-  mcp_id: mcp_1
+  mcp_id: mcp_1                       # <-- zmienione z mcp_address na mcp_id
   
   # Piny na MCP23017
   relay_pin: 0
@@ -20,11 +20,32 @@ substitutions:
 # ============================================
 
 globals:
+  - id: ${entity_id}_gate_position
+    type: float
+    restore_value: false
+    initial_value: '0.0'
+
   - id: ${entity_id}_gate_state
     type: int
-    restore_value: true
+    restore_value: false
     initial_value: '0'
     # 0 - closed, 1 - opening, 2 - opened, 3 - closing
+
+  - id: ${entity_id}_button_state
+    type: int
+    restore_value: false
+    initial_value: '0'
+    # 0 - stop, 1 - open, 2 - stop, 3 - close
+
+  - id: ${entity_id}_is_tuned
+    type: bool
+    restore_value: false
+    initial_value: 'false'
+
+  - id: ${entity_id}_stop_gate_indicator
+    type: bool
+    restore_value: false
+    initial_value: 'false'
 
 # ============================================
 # PRZYCISK FIZYCZNY
@@ -40,36 +61,35 @@ binary_sensor:
       mode: INPUT
       inverted: true
     on_press:
-      then:
-        - cover.toggle: ${entity_id}_cover
+        then:
+          - script.execute: ${entity_id}_handle_button_press
 
   - platform: gpio
-    name: "${entity_id}_sensor_opened_gate"
-    id: ${entity_id}_sensor_opened_gate
-    device_id: ${device_id}
-    pin:
-      mcp23xxx: ${mcp_id}
-      number: ${sensor_gate_opened_pin}
-      mode: INPUT
-      inverted: false
-    on_press:
-      then:
-        - logger.log: "${entity_id}: Sensor Gate Opened"
-        - lambda: 'id(${entity_id}_gate_state) = 2;'  # OPEN
-
-  - platform: gpio
-    name: "${entity_id}_sensor_closed_gate"
-    id: ${entity_id}_sensor_closed_gate
+    name: "${entity_id}_gate_closed_sensor"
+    id: ${entity_id}_gate_closed_sensor
     device_id: ${device_id}
     pin:
       mcp23xxx: ${mcp_id}
       number: ${sensor_gate_closed_pin}
       mode: INPUT
-      inverted: false
-    on_press:
-      then:
-        - logger.log: "${entity_id}: Sensor Gate Closed"
-        - lambda: 'id(${entity_id}_gate_state) = 0;'  # CLOSED
+      inverted: true
+    filters:
+      - delayed_on: 100ms
+      - delayed_off: 100ms
+
+  - platform: gpio
+    name: "${entity_id}_gate_opened_sensor"
+    id: ${entity_id}_gate_opened_sensor
+    device_id: ${device_id}
+    pin:
+      mcp23xxx: ${mcp_id}
+      number: ${sensor_gate_opened_pin}
+      mode: INPUT
+      inverted: true
+    filters:
+      - delayed_on: 100ms
+      - delayed_off: 100ms
+
 
 # ============================================
 # PRZYCISKI WIRTUALNE (do testów)
@@ -81,9 +101,8 @@ button:
     device_id: ${device_id}
     icon: "mdi:gesture-tap-button"
     on_press:
-      then:
-        - logger.log: "${entity_id}: Wirtualny klik"
-        - cover.toggle: ${entity_id}_cover
+      - logger.log: "${entity_id}: Wirtualny klik"
+      - script.execute: ${entity_id}_handle_button_press
 
 # ============================================
 # PRZEKAŹNIKI
@@ -94,14 +113,40 @@ switch:
     id: ${entity_id}_relay
     device_id: ${device_id}
     pin:
-      mcp23xxx: ${mcp_id}
+      mcp23xxx: ${mcp_id}              # <-- używamy mcp_id
       number: ${relay_pin}
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
 
+  - platform: template
+    name: "${entity_id}_virt_close_sensor"
+    id: ${entity_id}_virt_close_sensor
+    device_id: ${device_id}
+    icon: "mdi:gate-closed"
+    optimistic: true
+    lambda: |-
+      return id(${entity_id}_virt_close_sensor).state;
+    on_turn_on:
+      - script.execute: ${entity_id}_update_gate_closed
+    on_turn_off:
+      - logger.log: "${entity_id}: XXX"
+
+  - platform: template
+    name: "${entity_id}_virt_open_sensor"
+    id: ${entity_id}_virt_open_sensor
+    device_id: ${device_id}
+    icon: "mdi:gate-open"
+    optimistic: true
+    lambda: |-
+      return id(${entity_id}_virt_open_sensor).state;
+    on_turn_on:
+      - script.execute: ${entity_id}_update_gate_opened
+    on_turn_off:
+      - logger.log: "${entity_id}: XXX"
+
 # ============================================
-# COVER - TERAZ Z DZIAŁAJĄCYM TOGGLE
+# COVER
 # ============================================
 cover:
   - platform: template
@@ -109,48 +154,59 @@ cover:
     id: ${entity_id}_cover
     device_id: ${device_id}
     device_class: gate
-    optimistic: true
-    assumed_state: false
-    
-    # Stan cover na podstawie gate_state
-    lambda: |-
-      if (id(${entity_id}_gate_state) == 0) {
-        return COVER_CLOSED;
-      } else if (id(${entity_id}_gate_state) == 1) {
-        return COVER_OPERATION_OPENING;
-      } else if (id(${entity_id}_gate_state) == 2) {
-        return COVER_OPEN;
-      } else if (id(${entity_id}_gate_state) == 3) {
-        return COVER_OPERATION_CLOSING;
-      } else {
-        return COVER_CLOSED;
-      }
-    
-    # Akcja otwierania - wywoływana przez cover.open lub cover.toggle (gdy stan CLOSED)
+    # lambda: |-
+    #   if (id(${entity_id}_gate_state) == 0) {
+    #     return COVER_CLOSED;
+    #   } else if (id(${entity_id}_gate_state) == 1) {
+    #     return COVER_OPENING;
+    #   } else if (id(${entity_id}_gate_state) == 2) {
+    #     return COVER_OPEN;
+    #   } else if (id(${entity_id}_gate_state) == 3) {
+    #     return COVER_OPERATION_CLOSING;
+    #   } else {
+    #     return COVER_CLOSED;
+    #   }
+    # lambda: |-
+    #   return id(${entity_id}_gate_position);
     open_action:
-      then:
-        - logger.log: "${entity_id}: Otwieranie"
-        - lambda: 'id(${entity_id}_gate_state) = 1;'  # Ustaw stan na OPENING
-        - script.execute: ${entity_id}_one_relay_click
-        - delay: 5s  # Czekaj na otwarcie (dostosuj do swojej bramy)
-        - lambda: 'id(${entity_id}_gate_state) = 2;'  # Ustaw stan na OPEN
-    
-    # Akcja zamykania - wywoływana przez cover.close lub cover.toggle (gdy stan OPEN)
+      - logger.log: "${entity_id}: Otwieranie"
+      - logger.log: 
+          format: "Current State: %d"
+          args: ['id(${entity_id}_gate_state)']
+      - lambda: |-
+          bool tuned = id(${entity_id}_is_tuned);
+
+          if (tuned) {
+            id(${entity_id}_open_gate).execute();
+          } else {
+            id(${entity_id}_one_relay_click).execute();
+          }
+
+          id(${entity_id}_button_state) = 1;
+          
     close_action:
-      then:
-        - logger.log: "${entity_id}: Zamykanie"
-        - lambda: 'id(${entity_id}_gate_state) = 3;'  # Ustaw stan na CLOSING
-        - script.execute: ${entity_id}_one_relay_click
-        - delay: 5s  # Czekaj na zamknięcie (dostosuj do swojej bramy)
-        - lambda: 'id(${entity_id}_gate_state) = 0;'  # Ustaw stan na CLOSED
-    
-    # Akcja stop - wywoływana przez cover.stop lub cover.toggle (gdy stan OPENING/CLOSING)
+      - logger.log: "${entity_id}: Zamykanie"
+      - logger.log: 
+          format: "Current State: %d"
+          args: ['id(${entity_id}_gate_state)']
+      - lambda: |-
+          bool tuned = id(${entity_id}_is_tuned);
+
+          if (tuned) {
+            id(${entity_id}_close_gate).execute();
+          } else {
+            id(${entity_id}_one_relay_click).execute();
+          }
+
+          id(${entity_id}_button_state) = 3;
     stop_action:
-      then:
-        - logger.log: "${entity_id}: Stop"
-        - script.execute: ${entity_id}_one_relay_click
-        # Stan pozostaje bez zmian (OPENING lub CLOSING)
-        # Możesz dodać delay i ustawić stan na OPEN lub CLOSED jeśli chcesz
+      - logger.log: "${entity_id}: Stop"
+      - logger.log: 
+          format: "Current State: %d"
+          args: ['id(${entity_id}_gate_state)'] 
+      - script.execute: ${entity_id}_stop_gate
+    optimistic: true
+    assumed_state: true
 
 # ============================================
 # SKRYPTY
@@ -191,3 +247,173 @@ script:
       - delay: ${relay_trigger_time}
       - switch.turn_off: ${entity_id}_relay
       - delay: ${relay_trigger_time}
+
+  - id: ${entity_id}_open_gate
+    then:
+      - lambda: |-
+          int state = id(${entity_id}_gate_state);
+          bool stop_indicator = id(${entity_id}_stop_gate_indicator);
+          
+          switch(state) {
+            case 0:  // Zamknięty - otwieramy
+              id(${entity_id}_one_relay_click).execute();
+              id(${entity_id}_gate_state) = 1;
+              break;
+              
+            case 1:  // Otwieranie - zatrzymujemy
+              if (stop_indicator) {
+                id(${entity_id}_three_relay_click).execute();
+                id(${entity_id}_gate_state) = 1;
+              }
+              break;
+              
+            case 2:  // Otwarty - nic nie robimy
+              id(${entity_id}_gate_state) = 2;
+              break;
+              
+            case 3:  // Zamykanie - zatrzymujemy lub odwracamy
+              if (stop_indicator) {
+                id(${entity_id}_three_relay_click).execute();
+                id(${entity_id}_gate_state) = 1;
+              } else {
+                id(${entity_id}_one_relay_click).execute();
+                id(${entity_id}_gate_state) = 1;
+              }
+              break;
+              
+            default:
+              break;
+          }
+          id(${entity_id}_stop_gate_indicator) = false;
+
+
+  - id: ${entity_id}_stop_gate
+    then:
+      - lambda: |-
+          int state = id(${entity_id}_gate_state);
+          bool stop_indicator = id(${entity_id}_stop_gate_indicator);
+          
+          if (stop_indicator) {
+            ESP_LOGD("stop_gate", "%s: Stop gate ignored - indicator already true", "${entity_id}");
+            return;
+          }
+          
+          switch(state) {
+            case 1:
+              ESP_LOGD("stop_gate", "%s: Stopping gate - opening state", "${entity_id}");
+              id(${entity_id}_one_relay_click).execute();
+              id(${entity_id}_stop_gate_indicator) = true;
+              break;
+              
+            case 3:
+              ESP_LOGD("stop_gate", "%s: Stopping gate - closing state", "${entity_id}");
+              id(${entity_id}_two_relay_click).execute();
+              id(${entity_id}_stop_gate_indicator) = true;
+              break;
+              
+            default:
+              ESP_LOGD("stop_gate", "%s: Stop gate ignored - invalid state: %d", "${entity_id}", state);
+              break;
+          }
+
+  - id: ${entity_id}_close_gate
+    then:
+      - lambda: |-
+          int state = id(${entity_id}_gate_state);
+          bool stop_indicator = id(${entity_id}_stop_gate_indicator);
+          
+          switch(state) {
+            case 0:
+              id(${entity_id}_gate_state) = 0;
+              break;
+              
+            case 1:
+              if (stop_indicator) {
+                id(${entity_id}_one_relay_click).execute();
+              } else {
+                id(${entity_id}_two_relay_click).execute();
+              }
+              id(${entity_id}_gate_state) = 3;
+              break;
+              
+            case 2:
+              id(${entity_id}_one_relay_click).execute();
+              id(${entity_id}_gate_state) = 3;
+              break;
+              
+            case 3:
+              if (stop_indicator) {
+                id(${entity_id}_one_relay_click).execute();
+              }
+              id(${entity_id}_gate_state) = 3;
+              break;
+          }
+          id(${entity_id}_stop_gate_indicator) = false;
+
+
+  - id: ${entity_id}_update_gate_closed
+    then:
+      - logger.log: "${entity_id}: Update gate closed"
+      - lambda: |-
+          id(${entity_id}_gate_state) = 0;
+          id(${entity_id}_button_state) = 0;
+          id(${entity_id}_is_tuned) = true;
+      - logger.log: 
+          format: "${entity_id}: Current Gate State: %d"
+          args: ['id(${entity_id}_gate_state)'] 
+  
+  - id: ${entity_id}_update_gate_opened
+    then:
+      - logger.log: "${entity_id}: Update gate opened"
+      - lambda: |-
+          id(${entity_id}_gate_state) = 2;
+          id(${entity_id}_button_state) = 2;
+          id(${entity_id}_is_tuned) = true;
+      - logger.log: 
+          format: "${entity_id}: Current Gate State: %d"
+          args: ['id(${entity_id}_gate_state)'] 
+
+
+  - id: ${entity_id}_handle_button_press
+    then:
+      - logger.log: "${entity_id}: Przełączanie stanu"
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 0;'
+          then:
+            - cover.open: ${entity_id}_cover
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 1;'
+          then:
+            - cover.stop: ${entity_id}_cover
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 2;'
+          then:
+            - cover.close: ${entity_id}_cover
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_button_state) == 3;'
+          then:
+            - cover.stop: ${entity_id}_cover
+      - lambda: |-
+          int current = id(${entity_id}_button_state);
+          current = (current + 1) % 4;
+          id(${entity_id}_button_state) = current;
+  
+  - id: ${entity_id}_update_button_status
+    then:
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_gate_state) == 1;'
+          then:
+            - lambda: |-
+                id(${entity_id}_button_state) = 2;
+      - if:
+          condition:
+            lambda: 'return id(${entity_id}_gate_state) == 3;'
+          then:
+            - lambda: |-
+                id(${entity_id}_button_state) = 0;
+      
