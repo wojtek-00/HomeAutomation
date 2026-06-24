@@ -154,18 +154,16 @@ cover:
     id: ${entity_id}_cover
     device_id: ${device_id}
     device_class: gate
-    # lambda: |-
-    #   if (id(${entity_id}_gate_state) == 0) {
-    #     return COVER_CLOSED;
-    #   } else if (id(${entity_id}_gate_state) == 1) {
-    #     return COVER_OPENING;
-    #   } else if (id(${entity_id}_gate_state) == 2) {
-    #     return COVER_OPEN;
-    #   } else if (id(${entity_id}_gate_state) == 3) {
-    #     return COVER_OPERATION_CLOSING;
-    #   } else {
-    #     return COVER_CLOSED;
-    #   }
+    lambda: |-
+      if (id(${entity_id}_virt_close_sensor).state == true && id(${entity_id}_virt_open_sensor).state == false) {
+        return COVER_CLOSED;
+      } else if (id(${entity_id}_virt_close_sensor).state == false && id(${entity_id}_virt_open_sensor).state == true) {
+        return COVER_OPEN;
+      } else {
+        return COVER_OPEN;
+      }
+    
+
     # lambda: |-
     #   return id(${entity_id}_gate_position);
     open_action:
@@ -256,12 +254,16 @@ script:
           
           switch(state) {
             case 0:  // Zamknięty - otwieramy
+              id(${entity_id}_cover).current_operation = COVER_OPERATION_OPENING;
+              id(${entity_id}_cover).publish_state();
               id(${entity_id}_one_relay_click).execute();
               id(${entity_id}_gate_state) = 1;
               break;
               
             case 1:  // Otwieranie - zatrzymujemy
               if (stop_indicator) {
+                id(${entity_id}_cover).current_operation = COVER_OPERATION_OPENING;
+                id(${entity_id}_cover).publish_state();
                 id(${entity_id}_three_relay_click).execute();
                 id(${entity_id}_gate_state) = 1;
               }
@@ -273,9 +275,13 @@ script:
               
             case 3:  // Zamykanie - zatrzymujemy lub odwracamy
               if (stop_indicator) {
+                id(${entity_id}_cover).current_operation = COVER_OPERATION_OPENING;
+                id(${entity_id}_cover).publish_state();
                 id(${entity_id}_three_relay_click).execute();
                 id(${entity_id}_gate_state) = 1;
               } else {
+                id(${entity_id}_cover).current_operation = COVER_OPERATION_OPENING;
+                id(${entity_id}_cover).publish_state();
                 id(${entity_id}_one_relay_click).execute();
                 id(${entity_id}_gate_state) = 1;
               }
@@ -286,6 +292,7 @@ script:
           }
           id(${entity_id}_stop_gate_indicator) = false;
 
+          
 
   - id: ${entity_id}_stop_gate
     then:
@@ -300,12 +307,16 @@ script:
           
           switch(state) {
             case 1:
+              id(${entity_id}_cover).current_operation = COVER_OPERATION_IDLE;
+              id(${entity_id}_cover).publish_state();
               ESP_LOGD("stop_gate", "%s: Stopping gate - opening state", "${entity_id}");
               id(${entity_id}_one_relay_click).execute();
               id(${entity_id}_stop_gate_indicator) = true;
               break;
               
             case 3:
+              id(${entity_id}_cover).current_operation = COVER_OPERATION_IDLE;
+              id(${entity_id}_cover).publish_state();
               ESP_LOGD("stop_gate", "%s: Stopping gate - closing state", "${entity_id}");
               id(${entity_id}_two_relay_click).execute();
               id(${entity_id}_stop_gate_indicator) = true;
@@ -328,6 +339,8 @@ script:
               break;
               
             case 1:
+              id(${entity_id}_cover).current_operation = COVER_OPERATION_CLOSING;
+              id(${entity_id}_cover).publish_state();
               if (stop_indicator) {
                 id(${entity_id}_one_relay_click).execute();
               } else {
@@ -337,11 +350,15 @@ script:
               break;
               
             case 2:
+              id(${entity_id}_cover).current_operation = COVER_OPERATION_CLOSING;
+              id(${entity_id}_cover).publish_state();
               id(${entity_id}_one_relay_click).execute();
               id(${entity_id}_gate_state) = 3;
               break;
               
             case 3:
+              id(${entity_id}_cover).current_operation = COVER_OPERATION_CLOSING;
+              id(${entity_id}_cover).publish_state();
               if (stop_indicator) {
                 id(${entity_id}_one_relay_click).execute();
               }
@@ -355,6 +372,8 @@ script:
     then:
       - logger.log: "${entity_id}: Update gate closed"
       - lambda: |-
+          id(${entity_id}_cover).current_operation = COVER_OPERATION_IDLE;
+          id(${entity_id}_cover).publish_state();
           id(${entity_id}_gate_state) = 0;
           id(${entity_id}_button_state) = 0;
           id(${entity_id}_is_tuned) = true;
@@ -366,6 +385,8 @@ script:
     then:
       - logger.log: "${entity_id}: Update gate opened"
       - lambda: |-
+          id(${entity_id}_cover).current_operation = COVER_OPERATION_IDLE;
+          id(${entity_id}_cover).publish_state();
           id(${entity_id}_gate_state) = 2;
           id(${entity_id}_button_state) = 2;
           id(${entity_id}_is_tuned) = true;
